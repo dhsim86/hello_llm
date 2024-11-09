@@ -19,9 +19,19 @@ print("input_ids: ", input_ids)
 embedding_dim = 16
 embed_layer = nn.Embedding(len(str2idx), embedding_dim) # 사전 크기가 5이고, 16차원의 임베딩을 생성하는 임베딩 레이어 생성
 
-input_embeddings = embed_layer(torch.tensor(input_ids))
-input_embeddings = input_embeddings.unsqueeze(0)
+token_embeddings = embed_layer(torch.tensor(input_ids))
+token_embeddings = token_embeddings.unsqueeze(0)
+
+max_positions = 12 # 최대 토큰 수
+position_embed_layer = nn.Embedding(max_positions, embedding_dim) # 위치 임베딩 레이어 생성
+position_ids = torch.arange(len(input_ids), dtype=torch.long).unsqueeze(0)
+
+position_encodings = position_embed_layer(position_ids)
+
+input_embeddings = token_embeddings + position_encodings
+
+print(f"token_embeddings: {token_embeddings}")
+print(f"position_encodings: {position_encodings}")
 print(f"input_embeddings: {input_embeddings}")
-print(f"input_embeddings Shape: {input_embeddings.shape}")
 
 
