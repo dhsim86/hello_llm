@@ -17,7 +17,7 @@ input_ids = [str2idx[word] for word in input_text_list]
 print("input_ids: ", input_ids)
 
 embedding_dim = 16
-embed_layer = nn.Embedding(len(str2idx), embedding_dim)
+embed_layer = nn.Embedding(len(str2idx), embedding_dim) # 사전 크기가 5이고, 16차원의 임베딩을 생성하는 임베딩 레이어 생성
 
 input_embeddings = embed_layer(torch.tensor(input_ids))
 input_embeddings = input_embeddings.unsqueeze(0)
