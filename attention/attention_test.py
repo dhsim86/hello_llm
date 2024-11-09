@@ -27,12 +27,12 @@ def get_qkv(input_embedding: str):
     return queries, keys, values
 
 
-def compute_attention(quries, keys, values, is_causal=False):
+def compute_attention(queries, keys, values, is_causal=False):
     print("---------------compute_attention-----------------")
-    dim_k = quries.size(-1)
+    dim_k = queries.size(-1)
 
     # 쿼리와 키를 곱하고, 분산이 커지는 것을 방지하기 위해 임베딩 차원 수의 제곱근으로 나눈다.
-    scores = queris @ keys.transpose(-2, -1) / sqrt(dim_k)
+    scores = queries @ keys.transpose(-2, -1) / sqrt(dim_k)
     print(f"scores: {scores}")
 
     # 쿼리와 키를 곱해 계산한 score를 합이 1이 되도록 소프트맥스를 취해 가중치로 바꾼다.
@@ -44,7 +44,7 @@ def compute_attention(quries, keys, values, is_causal=False):
 
 
 if __name__ == '__main__':
-    queris, keys, values = get_qkv(embedding_text.get_input_embeddings())
-    result = compute_attention(queris, keys, values)
+    queries, keys, values = get_qkv(embedding_text.get_input_embeddings())
+    result = compute_attention(queries, keys, values)
 
     print(f"result: {result}")
