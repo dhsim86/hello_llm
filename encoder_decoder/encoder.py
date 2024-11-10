@@ -30,7 +30,7 @@ class TransformerEncoderLayer(nn.Module):
         # 멀티 헤드 어텐션
         attn_output = self.attn(norm_x, norm_x, norm_x)
 
-        # 잔차 연결 (어텐션 결과 + 드롭아웃한 입력)
+        # 잔차 연결 (드롭아웃한 어텐션 결과 + 입력)
         x = src + self.dropout1(attn_output)
 
         # 피드 포워드 연산
