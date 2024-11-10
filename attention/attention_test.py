@@ -1,6 +1,7 @@
 from tokens import embedding_text
 
 from math import sqrt
+import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
@@ -33,6 +34,14 @@ def compute_attention(queries, keys, values, is_causal=False):
 
     # 쿼리와 키를 곱하고, 분산이 커지는 것을 방지하기 위해 임베딩 차원 수의 제곱근으로 나눈다.
     scores = queries @ keys.transpose(-2, -1) / sqrt(dim_k)
+
+    # 마스크 여부
+    if is_causal:
+        query_length = queries.size(2)
+        key_length = keys.size(2)
+        temp_mask = torch.ones(query_length, key_length, dtype=torch.bool).tril(diagonal=0)
+        scores = scores.masked_fill(temp_mask == False, float("-inf"))
+
     print(f"scores: {scores}")
 
     # 쿼리와 키를 곱해 계산한 score를 합이 1이 되도록 소프트맥스를 취해 가중치로 바꾼다.
@@ -46,5 +55,7 @@ def compute_attention(queries, keys, values, is_causal=False):
 if __name__ == '__main__':
     queries, keys, values = get_qkv(embedding_text.get_input_embeddings())
     result = compute_attention(queries, keys, values)
+    masked_result = compute_attention(queries, keys, values, True)
 
     print(f"result: {result}")
+    print(f"masked_result: {result}")
