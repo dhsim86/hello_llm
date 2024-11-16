@@ -1,8 +1,8 @@
 import copy
 
-from attention.multi_head_attention import MultiHeadAttention
-from forward.feed_forward import PreLayerNormFeedForward
-from tokens import embedding_text
+from transformer.attention.multi_head_attention import MultiHeadAttention
+from transformer.forward.feed_forward import PreLayerNormFeedForward
+from transformer.tokens import embedding_text
 
 import torch.nn as nn
 

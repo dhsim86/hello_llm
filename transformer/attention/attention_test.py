@@ -1,4 +1,4 @@
-from tokens import embedding_text
+from transformer.tokens import embedding_text
 
 from math import sqrt
 import torch
