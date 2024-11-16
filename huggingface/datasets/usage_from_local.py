@@ -11,4 +11,4 @@ if __name__ == '__main__':
     # 판다스 데이터프레임 활용
     import pandas as pd
     df = pd.DataFrame({"a": [1, 2, 3]})
-    dataset = Dataset.from_pandas((df)
+    dataset = Dataset.from_pandas(df)
