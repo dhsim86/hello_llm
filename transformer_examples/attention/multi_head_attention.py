@@ -1,5 +1,5 @@
-from transformer.attention.attention_test import compute_attention
-from transformer.tokens import embedding_text
+from transformer_examples.attention.attention_test import compute_attention
+from transformer_examples.tokens import embedding_text
 
 import torch.nn as nn
 

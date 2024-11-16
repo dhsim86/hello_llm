@@ -1,4 +1,4 @@
-from transformer.tokens import embedding_text
+from transformer_examples.tokens import embedding_text
 
 import torch.nn as nn
 

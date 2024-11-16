@@ -1,9 +1,9 @@
 import copy
 
-from transformer.attention.attention_test import compute_attention, get_qkv
-from transformer.attention.multi_head_attention import MultiHeadAttention
-from transformer.forward.feed_forward import PreLayerNormFeedForward
-from transformer.tokens import embedding_text
+from transformer_examples.attention.attention_test import compute_attention, get_qkv
+from transformer_examples.attention.multi_head_attention import MultiHeadAttention
+from transformer_examples.forward.feed_forward import PreLayerNormFeedForward
+from transformer_examples.tokens import embedding_text
 
 import torch.nn as nn
 
