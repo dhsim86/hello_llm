@@ -127,13 +127,13 @@ def evaluate(model, data_loader):
 
 if __name__ == '__main__':
     train_dataset, test_dataset, valid_dataset = prepare_dataset()
-
     ##############################################################################
     # 모델과 토크나이저 불러오기
 
     # NVIDIA CUDA 사용 가능 여부 확인 후 디바이스 설정
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    # 모델 및 토크나이저 로드
     model_id = "klue/roberta-base"
     model = AutoModelForSequenceClassification.from_pretrained(model_id,
                                                                num_labels=len(train_dataset.features['label'].names))
