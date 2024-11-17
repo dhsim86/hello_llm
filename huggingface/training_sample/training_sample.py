@@ -164,3 +164,12 @@ if __name__ == '__main__':
     # Testing, 성능 평가
     _, test_accuracy = evaluate(model, test_dataloader)
     print(f"Test accuracy: {test_accuracy}")  # 정확도 0.82
+
+    # 모델 / 토크나이저를 허깅페이스로 업로드
+    from huggingface_hub import login
+
+    login(token='')
+    repo_id = f"raveas/roberta-base-klue-ynat-classification"
+
+    model.push_to_hub(repo_id)
+    tokenizer.push_to_hub(repo_id)
