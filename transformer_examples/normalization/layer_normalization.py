@@ -14,4 +14,5 @@ if __name__ == '__main__':
     print(f"PRE Normalization -  mean: {input_embeddings.mean(dim=-1).data}, std: {input_embeddings.std(dim=-1).data}")
 
     # 정규화후 평균 및 표준편차
+    # 평균이 0, 표준편차가 1로 정규화됨
     print(f"AFTER Normalization -  mean: {norm_x.mean(dim=-1).data}, std: {norm_x.std(dim=-1).data}")

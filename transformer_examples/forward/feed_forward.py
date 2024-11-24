@@ -22,7 +22,12 @@ class PreLayerNormFeedForward(nn.Module):
         self.norm = nn.LayerNorm(d_model)
 
     def forward(self, src):
+        # 층 정규화
         x = self.norm(src)
+
+        # 1. linear1 -> activation -> dropout1 -> linear2
+        # 2. 잔차 연결
+        # 3. dropout2
         x = x + self.linear2(self.dropout1(self.activation(self.linear1(x))))
         x = self.dropout2(x)
 
