@@ -1,7 +1,7 @@
+import torch.nn as nn
+
 from transformer_examples.attention.attention_test import compute_attention
 from transformer_examples.tokens import embedding_text
-
-import torch.nn as nn
 
 
 class MultiHeadAttention(nn.Module):
@@ -9,18 +9,21 @@ class MultiHeadAttention(nn.Module):
         super().__init__()
         self.n_head = n_head
         self.is_causal = is_causal
+
         self.weight_q = nn.Linear(token_embed_dim, d_model)
         self.weight_k = nn.Linear(token_embed_dim, d_model)
         self.weight_v = nn.Linear(token_embed_dim, d_model)
+
         self.concat_linear = nn.Linear(d_model, d_model)
 
     def forward(self, queries, keys, values):
         B, T, C = queries.size()
+        print(f"B: {B}, T: {T}, C: {C}")
 
         # 쿼리와 키, 값을 n_head로 쪼갠다.
-        queries = self.weight_q(queries).view(B, T, self.n_head, C).transpose(1, 2)
-        keys = self.weight_k(keys).view(B, T, self.n_head, C).transpose(1, 2)
-        values = self.weight_v(values).view(B, T, self.n_head, C).transpose(1, 2)
+        queries = self.weight_q(queries).view(B, T, self.n_head, C // self.n_head).transpose(1, 2)
+        keys = self.weight_k(keys).view(B, T, self.n_head, C // self.n_head).transpose(1, 2)
+        values = self.weight_v(values).view(B, T, self.n_head, C // self.n_head).transpose(1, 2)
 
         # 각각의 어텐션을 계산
         attention = compute_attention(queries, keys, values, self.is_causal)
