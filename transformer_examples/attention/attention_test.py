@@ -46,8 +46,9 @@ def compute_attention(queries, keys, values, is_causal=False):
 
     # 마스크 여부
     if is_causal:
-        query_length = queries.size(1)
-        key_length = keys.size(1)
+        # TODO: 버그 수정
+        query_length = queries.size(1) # 디코더에서 실행시 2로 변경
+        key_length = keys.size(1) # 디코더에서 실행시 2로 변경
         temp_mask = torch.ones(query_length, key_length, dtype=torch.bool).tril(diagonal=0)
         scores = scores.masked_fill(temp_mask == False, float("-inf"))
 
