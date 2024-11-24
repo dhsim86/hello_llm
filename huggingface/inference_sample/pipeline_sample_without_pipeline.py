@@ -33,7 +33,8 @@ if __name__ == '__main__':
     dataset = load_dataset('klue', 'ynat', split='validation')
 
     custom_pipeline = CustomPipeline('raveas/roberta-base-klue-ynat-classification')
-    result = custom_pipeline(dataset['title'][:5])
+    result = custom_pipeline(dataset['title'][:10])
 
     # 예측 확률이 가장 높은 레이블과 확률을 리턴
+    print(f"input: {dataset['title'][:10]}")
     print(f"result: {result}")
