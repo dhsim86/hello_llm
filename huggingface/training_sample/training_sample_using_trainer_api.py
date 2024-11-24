@@ -108,6 +108,12 @@ if __name__ == '__main__':
     # 평가 결과 출력
     print(result)
 
+    # 모델의 예측 아이디와 문자열 레이블을 연결할 데이터를 모델 config에 저장
+    id2label = {i: label for i, label in enumerate(train_dataset.features['label'].names)}
+    label2id = {label: i for i, label in id2label.items()}
+    trainer.model.config.id2label = id2label
+    trainer.model.config.label2id = label2id
+
     # 모델 / 토크나이저를 허깅페이스로 업로드
     from huggingface_hub import login
 
