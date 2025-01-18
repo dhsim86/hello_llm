@@ -23,6 +23,7 @@ def get_input_embeddings() -> str:
     # 토큰 임베딩 생성
     embedding_dim = 16
     embed_layer = nn.Embedding(len(str2idx), embedding_dim)  # 사전 크기가 5이고, 16차원의 임베딩을 생성하는 임베딩 레이어 생성
+    print(f"torch.tensor(token_ids): {torch.tensor(token_ids)}")    # 1차원 텐서 객체 생성
     token_embeddings = embed_layer(torch.tensor(token_ids))
     # 딥러닝 모델의 입력 데이터 형식을 맞추기 위해 배치 차원을 추가
     # 배치 크기를 1로 설정하여 한 번에 하나의 데이터만 처리하겠다는 의미
