@@ -32,7 +32,7 @@ def get_input_embeddings() -> str:
     # 위치 인코딩 생성
     max_positions = 12  # 최대 토큰 수
     position_embed_layer = nn.Embedding(max_positions, embedding_dim)  # 위치 임베딩 레이어 생성
-    # 주어진 범위내의 정수 또는 부동 소수점 수의 시퀀스를 생성하여 1차원 텐서 객체 생성
+    # 주어진 범위내의 정수 또는 부동 소수점 수의 시퀀스를 생성하여 1차원 텐서 객체 생성 및 차원 추가
     position_ids = torch.arange(len(token_ids), dtype=torch.long).unsqueeze(0)
     print(f"position_ids: {position_ids}")
     position_encodings = position_embed_layer(position_ids)
