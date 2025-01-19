@@ -28,6 +28,7 @@ class TransformerDecoderLayer(nn.Module):
         self.dropout2 = nn.Dropout(dropout)
 
     def forward(self, tgt, encoder_output):
+        ###################################
         # 디코더 입력 -> 층 정규화
         x = self.norm1(tgt)
 
@@ -42,9 +43,11 @@ class TransformerDecoderLayer(nn.Module):
         # 1. 다시 층 정규화
         x = self.norm2(x)
         # 2. 인코더 결과를 입력으로 멀티 헤드 어텐션
+        #    - 쿼리: 디코더의 잠재 상태 / 키와 값: 인코더의 결과
         # 3. 디코더 결과와 잔차 연결
         x = x + self.dropout2(self.multi_head_attn(x, encoder_output, encoder_output))
 
+        ###################################
         # 피드 포워드
         x = self.feed_forward(x)
 
@@ -64,7 +67,8 @@ class TransformerDecoder(nn.Module):
 
     def forward(self, tgt, src):
         output = tgt
-        for mod in self.layers:
+        for idx, mod in enumerate(self.layers):
+            print(f"idx: {idx + 1}번째 디코더 블록")
             output = mod(output, src)
         return output
 

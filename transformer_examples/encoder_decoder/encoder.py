@@ -24,16 +24,23 @@ class TransformerEncoderLayer(nn.Module):
         self.feed_forward = PreLayerNormFeedForward(d_model, dim_feedforward, dropout)
 
     def forward(self, src):
-        # 층 정규화 (사전 정규화)
+        ###################################
+        # 1. 층 정규화 (사전 정규화)
         norm_x = self.norm1(src)
 
-        # 멀티 헤드 어텐션
+        ###################################
+        # 2. 멀티 헤드 어텐션
         attn_output = self.attn(norm_x, norm_x, norm_x)
 
-        # 잔차 연결 (드롭아웃한 어텐션 결과 + 입력)
+        ###################################
+        # 3. 잔차 연결 (원래 입력 + 드롭아웃한 어텐션 결과)
         x = src + self.dropout1(attn_output)
 
-        # 피드 포워드 연산
+        ###################################
+        # 4. 피드 포워드 연산
+        #    - 1) 정규화 -> 활성함수 -> 드롭아웃 -> 정규화
+        #    - 2) 잔차 연결 (입력 + 1)의 결과)
+        #    - 3) 드롭아웃
         x = self.feed_forward(x)
 
         return x
@@ -54,7 +61,8 @@ class TransformerEncoder(nn.Module):
         output = src
 
         # 인코더 결과를 다시 다음 인코더의 입력으로
-        for mod in self.layers:
+        for idx, mod in enumerate(self.layers):
+            print(f"idx: {idx + 1}번째 인코더 블록")
             output = mod(output)
 
         return output
