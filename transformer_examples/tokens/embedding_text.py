@@ -44,6 +44,7 @@ def get_input_embeddings() -> str:
     print(f"token_embeddings: {token_embeddings}")
     print(f"position_encodings: {position_encodings}")
     print(f"input_embeddings: {input_embeddings}")
+    print(f"input_embeddings.shape: {input_embeddings.shape}")
 
     return input_embeddings
 

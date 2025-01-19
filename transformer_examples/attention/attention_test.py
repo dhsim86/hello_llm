@@ -76,6 +76,8 @@ if __name__ == '__main__':
     queries, keys, values = get_qkv(embedding_text.get_input_embeddings())
     result = compute_attention(queries, keys, values)
     print(f"result: {result}")
+    print(f"result.shape: {result.shape}")
 
     masked_result = compute_attention(queries, keys, values, True)
     print(f"masked_result: {masked_result}")
+    print(f"masked_result.shape: {masked_result.shape}")

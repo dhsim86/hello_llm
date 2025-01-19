@@ -58,3 +58,4 @@ if __name__ == '__main__':
     after_attention_embeddings = mh_attention(input_embeddings, input_embeddings, input_embeddings)
 
     print(f"after_attention_embeddings: ${after_attention_embeddings}")
+    print(f"after_attention_embeddings.shape: ${after_attention_embeddings.shape}")
