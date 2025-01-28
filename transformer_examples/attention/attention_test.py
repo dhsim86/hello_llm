@@ -61,7 +61,7 @@ def compute_attention(queries, keys, values, is_causal=False):
     print(f"scores: {scores}")
 
     ##################################################################
-    # 4. 스코어를 softmax 취하여 가중치(score)로 계산
+    # 4. 스코어를 softmax 취하여 가중치(weight)로 계산
     #    - 쿼리와 키를 곱해 계산한 score를 합이 1이 되도록 소프트맥스를 취해 가중치로 바꾼다.
     weight = F.softmax(scores, dim=-1)
     print(f"weight: {weight}")
