@@ -3,7 +3,11 @@ import torch.nn as nn
 from transformer_examples.attention.attention_test import compute_attention
 from transformer_examples.tokens import embedding_text
 
-
+##################################################################
+# 멀티 헤드 어텐션을 위한 하이퍼파라미터
+# token_embed_dim: 임베딩 벡터의 크기
+# d_model: 모델의 차원 크기, Q, K, V 벡터를 생성하는데 사용되는 가중치의 크기
+# n_head: 헤드의 갯수
 class MultiHeadAttention(nn.Module):
     def __init__(self, token_embed_dim, d_model, n_head, is_causal=False):
         super().__init__()
