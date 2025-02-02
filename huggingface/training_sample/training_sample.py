@@ -62,6 +62,8 @@ def make_dataloader(dataset, batch_size, shuffle=True):
     dataset = dataset.rename_column("label", "labels")  # 컬럼 이름 변경
     dataset = dataset.remove_columns(column_names=['title'])  # 불필요한 컬럼(토큰화를 수행한 title 컬럼) 제거
 
+    print(f"after data pre processing: {dataset[0]}")  # 토큰화된 데이터 확인
+
     # DataLoader 클래스를 사용해 데이터셋을 배치 데이터로 변환
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)
 
