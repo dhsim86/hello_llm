@@ -6,7 +6,7 @@ if __name__ == '__main__':
 
     model_id = 'raveas/roberta-base-klue-ynat-classification'
 
-    model_pipeline = pipeline('text-classification', model=model_id)
+    model_pipeline = pipeline(task='text-classification', model=model_id)
 
     result = model_pipeline(dataset['title'][:5])
 
