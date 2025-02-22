@@ -24,11 +24,15 @@ def train_model(model, dataset: Dataset, training_args: TrainingArguments):
         outputs = model(**batch)
 
         loss = outputs.loss
+
+        # TrainingArgument, 학습인자에서 그레이디언트 누적 횟수를 둘 수 있다.
+        # >>>> 누적 횟수를 4로 둘 경우, 로스값(손실)을 4로 나누어 역전파를 수행
         loss = loss / training_args.gradient_accumulation_steps
         loss.backward()  # 손실값 역전파
 
         # 그레이디언트 누적 기능을 사용하는 설정
         # 스텝에 따라 2 또는 4로 설정하는데, 기본값은 1
+        # >>>> 누적 횟수를 4로 둘 경우, 4번의 스텝마다 모델을 업데이트
         if step % training_args.gradient_accumulation_steps == 0:
             optimizer.step()  # 모델 업데이트 (역전파 결과를 바탕으로 모델 업데이트)
 
@@ -43,5 +47,5 @@ def train_model(model, dataset: Dataset, training_args: TrainingArguments):
 
             optimizer.zero_grad()
 
-        print(f"옵티마이저 상태의 메모리 사용량: {optimizer_memory / (1024 ** 3):.3f} GB")
-        print(f"그레이디언트 상태의 메모리 사용량: {gradients_memory / (1024 ** 3):.3f} GB")
+            print(f"옵티마이저 상태의 메모리 사용량: {optimizer_memory / (1024 ** 3):.3f} GB")
+            print(f"그레이디언트 상태의 메모리 사용량: {gradients_memory / (1024 ** 3):.3f} GB")

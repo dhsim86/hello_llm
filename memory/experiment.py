@@ -55,6 +55,6 @@ if __name__ == '__main__':
     print_gpu_utilization()
 
     for batch_size in [4, 8, 16]:
-        gpu_memory_experiment(batch_size)
+        gpu_memory_experiment(batch_size=batch_size, gradient_accumulation_steps=4)
 
         torch.cuda.empty_cache()
