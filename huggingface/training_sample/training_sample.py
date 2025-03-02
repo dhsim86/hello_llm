@@ -174,10 +174,10 @@ if __name__ == '__main__':
     model.config.label2id = label2id
 
     # 모델 / 토크나이저를 허깅페이스로 업로드
-    from huggingface_hub import login
+    #from huggingface_hub import login
 
-    login(token='')
-    repo_id = f"raveas/roberta-base-klue-ynat-classification"
+    #login(token='')
+    #repo_id = f"raveas/roberta-base-klue-ynat-classification"
 
-    model.push_to_hub(repo_id)
-    tokenizer.push_to_hub(repo_id)
+    #model.push_to_hub(repo_id)
+    #tokenizer.push_to_hub(repo_id)

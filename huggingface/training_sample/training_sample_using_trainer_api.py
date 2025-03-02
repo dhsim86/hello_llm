@@ -115,9 +115,9 @@ if __name__ == '__main__':
     trainer.model.config.label2id = label2id
 
     # 모델 / 토크나이저를 허깅페이스로 업로드
-    from huggingface_hub import login
+    #from huggingface_hub import login
 
-    login(token='')
-    repo_id = f"raveas/roberta-base-klue-ynat-classification-trainer-api"
+    #login(token='')
+    #repo_id = f"raveas/roberta-base-klue-ynat-classification-trainer-api"
 
-    trainer.push_to_hub(repo_id)
+    #trainer.push_to_hub(repo_id)
