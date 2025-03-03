@@ -68,4 +68,7 @@ if __name__ == '__main__':
         # QLoRA 적용
         # gpu_memory_experiment(batch_size=batch_size, peft='qlora')
 
+    if torch.cuda.is_available():
         torch.cuda.empty_cache()
+    elif torch.backends.mps.is_available():
+        torch.mps.empty_cache()

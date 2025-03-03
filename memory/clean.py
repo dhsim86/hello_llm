@@ -13,4 +13,7 @@ def clean_gpu_memory():
     gc.collect()
 
     # 더 이상 사용하지 않는 GPU 메모리 반환
-    torch.cuda.empty_cache()
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+    elif torch.backends.mps.is_available():
+        torch.mps.empty_cache()

@@ -7,6 +7,9 @@ def print_gpu_utilization():
         # torch.cuda.memory_allocated(): 현재 할당된 GPU 메모리의 양을 바이트 단위로 반환
         used_memory = torch.cuda.memory_allocated() / 1024 ** 3
         print(f"GPU 메모리 사용량: {used_memory:.3f} GB")
+    elif torch.backends.mps.is_available():
+        used_memory = torch.mps.current_allocated_memory() / 1024 ** 3
+        print(f"GPU 메모리 사용량: {used_memory:.3f} GB")
     else:
         print("런타임 유형을 GPU로 변경해주세요.")
 
