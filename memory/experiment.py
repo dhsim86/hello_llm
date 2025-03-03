@@ -59,6 +59,9 @@ if __name__ == '__main__':
         # gpu_memory_experiment(batch_size=batch_size, gradient_accumulation_steps=1, gradient_checkpointing=True)
 
         # LoRA 적용
-        gpu_memory_experiment(batch_size=batch_size, peft='lora')
+        # gpu_memory_experiment(batch_size=batch_size, peft='lora')
+
+        # QLoRA 적용
+        gpu_memory_experiment(batch_size=batch_size, peft='qlora')
 
         torch.cuda.empty_cache()
