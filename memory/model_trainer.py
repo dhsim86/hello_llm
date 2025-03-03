@@ -2,8 +2,7 @@ from datasets import Dataset
 from transformers import TrainingArguments, AdamW
 from torch.utils.data import DataLoader
 
-from check_gpu_memory import print_gpu_utilization
-from estimate_gradient_optimizer import estimate_memory_of_gradients, estimate_memory_of_optimizer
+from utils import print_gpu_utilization, estimate_memory_of_gradients, estimate_memory_of_optimizer
 
 
 # 모델을 학습시키며 중간에 메모리 사용량 확인

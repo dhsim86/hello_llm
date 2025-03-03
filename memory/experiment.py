@@ -3,11 +3,9 @@ import gc
 import torch.cuda
 from transformers import TrainingArguments, Trainer
 
-from loader import load_model_and_tokenizer
-from dummy_dataset import make_dummy_dataset
-from train_model import train_model
-from clean import clean_gpu_memory
-from check_gpu_memory import print_gpu_utilization
+from model_loader import load_model_and_tokenizer
+from model_trainer import train_model
+from utils import make_dummy_dataset, clean_gpu_memory, print_gpu_utilization
 
 
 # 배치 크기, 그레이디언트 누적, 그레이디언트 체크포인팅, peft 설정에 따라 GPU 메모리 사용량 확인

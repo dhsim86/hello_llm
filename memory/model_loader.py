@@ -2,7 +2,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
-from check_gpu_memory import print_gpu_utilization
+from utils import print_gpu_utilization
 
 
 # 파라미터
