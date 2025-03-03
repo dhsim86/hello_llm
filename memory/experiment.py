@@ -55,7 +55,11 @@ if __name__ == '__main__':
     print_gpu_utilization()
 
     for batch_size in [4, 8, 16]:
+        # 그레이디언트 누적
         # batch_size * gradient_accumulation_steps 크기 만큼의 배치 크기 효과를 얻을 수 있다.
+        # gpu_memory_experiment(batch_size=batch_size, gradient_accumulation_steps=4)
+
+        # 그레이디언트 체크포인팅
         # gpu_memory_experiment(batch_size=batch_size, gradient_accumulation_steps=1, gradient_checkpointing=True)
 
         # LoRA 적용
