@@ -55,7 +55,7 @@ def change_jsonl_to_csv(input_file, output_file, prompt_column="prompt", respons
 
 if __name__ == '__main__':
     from datasets import load_dataset
-    from text2sql.utils.prompt import make_inference_pipeline
+    from model import make_inference_pipeline
     from prompt import make_prompt
 
     model_id = 'beomi/Yi-Ko-6B'
