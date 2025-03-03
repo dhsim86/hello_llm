@@ -1,5 +1,5 @@
 from datasets import load_dataset
-from prompt import make_prompt
+from text2sql.utils.prompt import make_prompt
 
 # 학습 데이터 다운로드
 df_sql = load_dataset("shangrilar/ko_text2sql", "origin")["train"]

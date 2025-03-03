@@ -1,20 +1,3 @@
-# DDL 및 사용자 요청사항(question), 정답 SQL(query)을 통해 프롬프트 생성
-# 학습할 때는 정답 SQL을 넣고 학습
-# 추론할 때는 SQL을 넣지 않는다.
-def make_prompt(ddl, question, query=''):
-    prompt = f"""당신은 SQL을 생성하는 SQL 봇입니다. DDL의 테이블을 활용한 Question을 해결할 수 있는 SQL 쿼리를 생성하세요.
-
-### DDL:
-{ddl}
-
-### Question:
-{question}
-
-### SQL:
-{query}"""
-    return prompt
-
-
 # 입력한 데이터프레임을 순회하면서 평가를 위해 사용할 프롬프트 생성
 # 프롬프트를 jsonl 파일에 기록
 # 프롬프트의 내용
@@ -50,9 +33,33 @@ gen_sql: {row['gen_sql']}"""
             f.write(json_string + "\n")
 
 
+# GPT 모델로 평가한 결과를 읽어와서 csv로 저장
+def change_jsonl_to_csv(input_file, output_file, prompt_column="prompt", response_column="response"):
+    import json
+    import pandas as pd
+
+    prompts = []
+    responses = []
+    with open(input_file, 'r') as json_file:
+        for data in json_file:
+            # 판단 결과 데이터를 각각 prompts, responses 변수에 저장
+            prompts.append(json.loads(data)[0]['messages'][0]['content'])
+            responses.append(json.loads(data)[1]['choices'][0]['message']['content'])
+
+    # 판다스 데이터 프레임으로 변환 후 csv 파일로 저장
+    df = pd.DataFrame({prompt_column: prompts, response_column: responses})
+    df.to_csv(output_file, index=False)
+
+    return df
+
+
 if __name__ == '__main__':
     from datasets import load_dataset
-    from hf_pipe import hf_pipe
+    from text2sql.utils.prompt import make_inference_pipeline
+    from prompt import make_prompt
+
+    model_id = 'beomi/Yi-Ko-6B'
+    model_pipe = make_inference_pipeline(model_id)
 
     # 데이터셋 불러오기
     df = load_dataset("shangrilar/ko_text2sql", "origin")['test']
@@ -62,8 +69,8 @@ if __name__ == '__main__':
         prompt = make_prompt(row['context'], row['question'])
         df.loc[idx, 'prompt'] = prompt
     # 모델로 추론하여 SQL을 생성 후 저장
-    gen_sqls = hf_pipe(df['prompt'].tolist(), do_sample=False,
-                       return_full_text=False, max_length=512, truncation=True)
+    gen_sqls = model_pipe(df['prompt'].tolist(), do_sample=False,
+                          return_full_text=False, max_length=512, truncation=True)
     gen_sqls = [x[0]['generated_text'] for x in gen_sqls]
     df['gen_sql'] = gen_sqls
 
