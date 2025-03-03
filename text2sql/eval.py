@@ -23,5 +23,5 @@ if __name__ == '__main__':
     df['gen_sql'] = gen_sqls
 
     # 평가를 위한 requests.jsonl 생성
-    eval_filepath = "text2sql_evaluation.jsonl"
+    eval_filepath = "text2sql_evaluation_pretrained.jsonl"
     make_requests_for_gpt_evaluation(df, eval_filepath)

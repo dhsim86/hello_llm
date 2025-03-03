@@ -1,0 +1,5299 @@
+prompt,response,,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+gt_sql: SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+gen_sql: SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:","{""resolve_yn"": ""yes""}",,19
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ê° ë³´ì_ ____ë¡ ë³´ì_ ê²½í_ì¹__ ©ì_ êµ¬í_ì¤
+gt_sql: SELECT reward_items, SUM(reward_experience) AS ë³´ì__ê²½í_ì¹_ FROM quests GROUP BY reward_items;
+gen_sql: SELECT reward_experience
+FROM quests
+WHERE reward_items = '10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,95
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¥ë_ë¥ ¥ì°© ëª¨ë_ ìº_¦­°ì_ __, ´ë_, ____, _²¨ __ì£¼ì_.
+gt_sql: SELECT T2.character_id, T2.name, T1.item_name, T2.level FROM equipments AS T1 JOIN characters AS T2 ON T1.character_id = T2.character_id;
+gen_sql: SELECT character_id, name, item_name, level
+FROM characters
+LEFT JOIN equipments
+ON character_id = equipment_id
+WHERE equipped = TRUE;
+
+### SQL ë´__ ê²°ê³¼:
+
+character_id | name | item_name | level
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: __ ´ë_ '¬ë_-ê³__ë¦'´ê±° '__-ê½' __¸ë ì°¾ì_ì¤
+gt_sql: SELECT * FROM quests WHERE name = '¬ë_-ê³__ë¦' OR name = '__-ê½';
+gen_sql: SELECT quest_id, name, description, reward_experience, reward_items
+FROM quests
+WHERE name IN ('¬ë_-ê³__ë¦', '__-ê½')
+
+### SQL ë´__ ê²°ê³¼:
+
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° __´ì_ê° ë§_ë§__ë¡ ë¡_·¸¸í_ __ë³__ ìº_¦­°ì_ __ ê²½í_ì¹_ ê³____.
+gt_sql: SELECT players.last_login, AVG(characters.experience) AS avg_experience FROM players JOIN characters ON players.player_id = characters.player_id GROUP BY players.last_login;
+gen_sql: SELECT AVG(experience)
+FROM characters
+WHERE player_id IN (SELECT player_id
+FROM players
+ORDER BY last_login DESC)
+
+### SQL ë´:
+SELECT AVG(experience)
+FROM characters
+WHERE player_id IN (SELECT player_id
+FROM players
+ORDER BY last_login DESC)
+
+### SQL ë´__ ê²°ê³¼:
+SELECT AVG(experience)
+FROM characters
+WHERE player_id IN (SELECT player_id
+FROM players
+ORDER BY last_login DESC)
+
+### SQL ë´__ ê²°ê³¼:
+SELECT AVG(experience)
+FROM characters
+WHERE player_id IN (SELECT player_id
+FROM players
+ORDER BY last_login DESC)
+
+### SQL ë´__ ê²°ê³¼:
+SELECT","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ê³ ¤ë_ ´ë_ __ë¡ __´ì_ ê°¸ìì¤
+gt_sql: SELECT name, description FROM clans ORDER BY name;
+gen_sql: SELECT name, description FROM clans ORDER BY name ASC;
+
+### SQL ë´__ _
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL ","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: __ê° '__ê³¤ì_ _µ´' __ ëª¨ë_ NPCë¥ ì°¾ì_ì£¼ì_.
+gt_sql: SELECT * FROM npcs WHERE location = '__ê³¤ì_ _µ´';
+gen_sql: SELECT * FROM npcs WHERE location = '__ê³¤ì_ _µ´'
+
+### SQL ë´__ ê²°ê³¼:
+npcs_id | name | role | location | related_quest
+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: '__'´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+gt_sql: SELECT clan_id, name FROM clans WHERE description LIKE '%__%';
+gen_sql: SELECT clan_id, name, description FROM clans WHERE description LIKE '%__%';
+
+### SQL ë´__ ê²°ê³¼:
+__
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID ´ë_ __ì¤
+
+### SQL ë´__ ¤ë_:
+__´ë_ ¨ì_ê° ¤ë_ ¬í_ ´ë_ ID","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: npcs __ë¸__ ¥ë_ __ _ __ì¤
+gt_sql: SELECT COUNT(*) FROM npcs;
+gen_sql: SELECT COUNT(*) FROM npcs;
+
+### SQL ë´:
+npcs __ë¸__ ¥ë_ __ _ __ì¤
+
+### SQL ë´__ ê²°ê³¼:
+npcs __ë¸__ ¥ë_ __ _ __ì¤
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: 2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+gt_sql: SELECT player_id FROM players WHERE date_joined > '2023-01-01 00:00:00';
+gen_sql: SELECT username FROM players WHERE date_joined > '2023-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1 ´í_ ê°__ ëª¨ë_ __´ì_ ___ ì¡°í_´ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+2023 1 1","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° ¤í_ _²¨ë³__ ¬ì___ __ ìº_¦­°ì_ _ ê³__´ì_
+gt_sql: SELECT level, COUNT(character_id) FROM skill_trees GROUP BY level;
+gen_sql: SELECT skill_tree_id, COUNT(*) FROM skill_trees GROUP BY skill_tree_id;
+
+### SQL ë´:
+SELECT skill_tree_id, COUNT(*) FROM skill_trees GROUP BY skill_tree_id;
+
+### SQL ë´__ ê²°ê³¼:
+skill_tree_id | COUNT(*)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° ë§__ ¥ì°© ___ ë¬´ì_¸ê?
+gt_sql: SELECT item_name FROM equipments WHERE equipped = TRUE GROUP BY item_name ORDER BY COUNT(*) DESC LIMIT 1;
+gen_sql: SELECT item_name, COUNT(*) FROM equipments GROUP BY item_name HAVING COUNT(*) > 1;
+
+### SQL ë´:
+SELECT item_name, COUNT(*) FROM equipments GROUP BY item_name HAVING COUNT(*) > 1;
+
+### SQL ë´__ ê²°ê³¼:
+
+item_name | COUNT(*)
+----------+----------
+Bow | 1
+Sword | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff | 1
+Staff","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ ë¦¬ë_ IDê° 200__ 300 ¬ì_´ê_, ¤ë_ '¥ë_'ë¥ ¬í__ __ ´ë_ ë¬´ì_¸ê
+gt_sql: SELECT * FROM clans WHERE leader_id BETWEEN 200 AND 300 AND description NOT LIKE '%¥ë_%';
+gen_sql: SELECT clan_id FROM clans WHERE clan_id IN (200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255);
+
+### Result:
+
+### Note:
+
+* SQL ë´_ SQL ____ ë´____.
+* SQL ë´_ SQL ____ ë´____.
+* SQL ë´_ SQL ____ ë´____.
+* SQL","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­ IDê° 2 ìº_¦­°ì_ ¤í_ ¸ë¦¬ë¥ ¤í_ëª __ë¡ __ 5ê°__ ë³´ì_ì¤
+gt_sql: SELECT * FROM skill_trees WHERE character_id = 2 ORDER BY skill_name DESC LIMIT 5;
+gen_sql: SELECT skill_name, level FROM skill_trees WHERE character_id = 2 ORDER BY skill_name ASC LIMIT 5;
+
+### SQL ë´__ ê²°ê³¼:
+skill_name | level
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ì§__ ì¤__ __(status) __¸ì_ ì´ ê°_ë¥ êµ¬í_¸ì_.
+gt_sql: SELECT COUNT(*) AS in_progress_count FROM quests q JOIN (SELECT * FROM quest_progresses WHERE status = 'ì§__ ì¤') qp ON q.quest_id = qp.quest_id;
+gen_sql: SELECT COUNT(*) FROM quest_progresses WHERE status = 'progressing';
+
+### SQL ë´:
+ì§__ ì¤__ __(status) __¸ì_ ì´ ê°_ë¥ êµ¬í_¸ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM quest_progresses WHERE status = 'progressing';
+
+### SQL ë´__ ê²°ê³¼:
+1000
+
+### SQL ë´__ ê²°ê³¼:
+1000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ëª¨ë_ ìº_¦­°ì_ ¤í_ ´ë_ê³ ´ë_ ¤í_ ê°ì§ ìº_¦­ _ __´ì_
+gt_sql: SELECT skill_name, COUNT(character_id) FROM skill_trees GROUP BY skill_name;
+gen_sql: SELECT skill_name, COUNT(*) FROM skill_trees GROUP BY skill_name;
+
+### SQL ë´:
+SELECT skill_name, COUNT(*) FROM skill_trees GROUP BY skill_name;
+
+### SQL ë´__ ê²°ê³¼:
+skill_name | COUNT(*)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ë§_ë§__ë¡ ë¡_·¸¸í_ __ê° 2023 2__ ¬ì_ ´ë_ ì°¾ì_ì¤.
+gt_sql: SELECT username FROM players WHERE last_login LIKE '2023-02-%';
+gen_sql: SELECT username FROM players WHERE last_login = '2023-02-01';
+
+### SQL ë´:
+SELECT username FROM players WHERE last_login = '2023-02-01';
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ì_ ´ë_:
+
+### SQL ë´","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_´ë_ê³ ´ë_ __ __´ì_ ´ë_ ë³´ì_ì£¼ì_ (, ´ë_ __ __´ì_ê° __ ´ë_ __).
+gt_sql: SELECT c.name, p.username FROM clans c JOIN players p ON c.leader_id = p.player_id WHERE c.leader_id IS NOT NULL;
+gen_sql: SELECT clan_id, name, username FROM clans
+WHERE leader_id = (SELECT player_id FROM players
+WHERE username = '[´ë_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id = (SELECT player_id FROM players
+WHERE username = '[__´ì_´ë_]'
+AND player_id","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ëª¨ë_ __´ì_ ìº_¦­ ´ë_¤ì ¥ë_ __ ´ë_ ë³´ì_ì£¼ì_.
+gt_sql: SELECT C.character_class, E.item_name FROM characters AS C JOIN equipments AS E ON C.character_id = E.character_id;
+gen_sql: SELECT character_class, item_name FROM characters
+LEFT JOIN equipments ON characters.character_id = equipments.character_id
+ORDER BY character_class, item_name;
+
+### SQL ë´:
+SELECT character_class, item_name FROM characters
+LEFT JOIN equipments ON characters.character_id = equipments.character_id
+ORDER BY character_class, item_name;","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ë§_ë§__ë¡ ë¡_·¸¸í_ __ê° 2020 1 1 ´í_´ê_ _²¨ 50 ´ì_ ëª¨ë_ ìº_¦­°ì_ ´ë_ê³ _²¨ ____.
+gt_sql: SELECT C.name, C.level FROM characters AS C JOIN players AS P ON C.player_id = P.player_id WHERE P.last_login >= '2020-01-01' AND C.level >= 50;
+gen_sql: SELECT character_name, level FROM characters
+WHERE character_id IN (
+SELECT character_id FROM inventory_items
+WHERE inventory_id IN (
+SELECT inventory_id FROM inventory_items
+WHERE character_id IN (
+SELECT character_id FROM characters
+WHERE character_class = 'Warrior'
+AND level > 40
+AND last_login > '2020-01-01'
+)
+)
+ORDER BY character_name, level
+
+### SQL ë´:
+SELECT character_name, level FROM characters
+WHERE character_id IN (
+SELECT character_id FROM inventory_items
+WHERE inventory_id IN (
+SELECT inventory_id","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ ì§__ __ 100% __¸ì_ ´ë_ê³ ë³´ì_ ê²½í_ì¹__ ¼ë_¸ê?
+gt_sql: SELECT q.name, q.reward_experience FROM quests AS q JOIN quest_progresses AS qp ON q.quest_id = qp.quest_id WHERE qp.progress = 100;
+gen_sql: SELECT quest_id, reward_experience FROM quests WHERE progress_id = 100;
+
+### SQL ë´:
+SELECT quest_id, reward_experience FROM quests WHERE progress_id = 100;
+
+### SQL ë´__ ê²°ê³¼:
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+#","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ê²½í_ì¹_ 150 ´í_´ë©°, '__ê³'´ë_ ¨ì_ê° ´ë_ ¬í_ __¸ë_ ´ë_ê² __?
+gt_sql: SELECT * FROM quests WHERE reward_experience <= 150 AND name LIKE '%__ê³%';
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE reward_experience <= 150
+AND name LIKE '%__ê³%';
+
+### ê²°ê³¼:
+
+1
+
+### SQL ë´__ ¤ë_:
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ë²:
+
+SQL ë´_ SQL ì¿¼ë¦¬ë¥ ____ ë´____.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ DDL ê¸°ë_¼ë_ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+### SQL ë´__ ¬ì_ :
+
+SQL ë´_ D","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê° __´ì_ __, _¤ì_, _²¨, ´ë_, ê°___ ì¡°í___.
+gt_sql: SELECT P.player_id, P.username, C.level, C.character_class, P.date_joined FROM players AS P JOIN characters AS C ON P.player_id = C.player_id;
+gen_sql: SELECT player_id, username, level, character_class, date_joined
+FROM players
+WHERE player_id IN (SELECT player_id
+FROM characters
+WHERE character_id IN (SELECT character_id
+FROM characters
+WHERE player_id =?);
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+{""player_id"": 1, ""username"": ""test"", ""level"": 1, ""character_class"": """", ""date_joined"": ""2019-01-01T00:00:00.000Z""},
+{""player_id"": 2, ""username"": ""test2"", ""level"": 1, ""character_class"": """", ""date_joined"": ""2019-01-01T00:00:00.000Z""},
+{""player_id"": 3, ""username"": ""test3"", ""level"": 1, ""character_class"": """", ""date_joined"": ""2019-01-01","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ê°__ 2021 10 1 ´í_ __´ì_ ¬ì___ê³ ´ë_¼ì_ __ì¤
+gt_sql: SELECT username, email FROM players WHERE date_joined >= '2021-10-01';
+gen_sql: SELECT username, email
+FROM players
+WHERE date_joined > '2021-10-01';
+
+### SQL ë´__ ê²°ê³¼:
+
+username
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: experienceê° 1000000 ´ì_´ê±° character_classê° 'Assassin' character player_id ´ë_ __ì¤
+gt_sql: SELECT player_id, name FROM characters WHERE experience >= 1000000 OR character_class = 'Assassin';
+gen_sql: SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id, name FROM characters WHERE experience > 1000000 AND character_class = 'Assassin';
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° __¸ë_ë¡, ´ë_ __¸ì_ ì°¸ê ìº_¦­°ì_ __ ì§__ë¥(progress) êµ¬í_¸ì_.
+gt_sql: SELECT q.quest_id, AVG(qp.progress) AS average_progress FROM quests q JOIN (SELECT * FROM quest_progresses) qp ON q.quest_id = qp.quest_id GROUP BY q.quest_id;
+gen_sql: SELECT AVG(progress) FROM quest_progresses WHERE quest_id IN (SELECT quest_id FROM quests WHERE name = 'quest1' AND reward_experience = 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ì§__ __ 50% ´ì_´ê_ __ ___ _ __¸ì_ ´ë_ê³ ìº_¦­°ì_ ´ë_ __ì¤.
+gt_sql: SELECT q.name, c.name FROM quest_progresses AS qp JOIN quests AS q ON qp.quest_id = q.quest_id JOIN characters AS c ON qp.character_id = c.character_id WHERE qp.status != 'completed' AND qp.progress >= 50;
+gen_sql: SELECT quest_id, name, character_id
+FROM quests
+WHERE status = '50%'
+AND quest_id IN (SELECT quest_id
+FROM quest_progresses
+WHERE character_id = 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê²½í_ì¹_ 10000 ´ì_ ë§__ ´ë_ ìº_¦­°ë ì°¾ì_ì¤.
+gt_sql: SELECT * FROM characters WHERE experience >= 10000 AND character_class = 'ë§__';
+gen_sql: SELECT character_class, level, experience
+FROM characters
+WHERE experience > 10000
+AND character_class = 'ë§__'
+
+### SQL ë´:
+SELECT character_class, level, experience
+FROM characters
+WHERE experience > 10000
+AND character_class = 'ë§__'
+
+### SQL ë´__ ê²°ê³¼:
+
+character_class | level | experience
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: _²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+gt_sql: SELECT C.name, ST.skill_name FROM characters AS C JOIN skill_trees AS ST ON C.character_id = ST.character_id WHERE C.level >= 20;
+gen_sql: SELECT character_name, skill_name
+FROM characters
+WHERE character_id > 1000000
+AND level > 20
+ORDER BY character_id;
+
+### SQL ë´__ ê²°ê³¼:
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __´ì_ ìº_¦­ ´ë_ê³ ´ë_ ìº_¦­°ì_ ¤í_ ´ë_ __ë³´ì_.
+
+_²¨ 20 ´ì_ __","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° ìº_¦­°ê __ __¸ì_ ´ë_, ë³´ì_ ê²½í_ì¹, ë³´ì_ ____ ì°¾ì_¸ì_.
+gt_sql: SELECT T1.name, T3.name, T3.reward_experience, T3.reward_items FROM characters AS T1 JOIN quest_progresses AS T2 ON T1.character_id = T2.character_id JOIN quests AS T3 ON T2.quest_id = T3.quest_id;
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE quest_id IN (
+SELECT quest_id
+FROM quest_progresses
+WHERE character_id = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ì§__ ì¤__ê±°ë_ __ __¸ì_ ´ë_ê³ ë³´ì_ ê²½í_ì¹_ ë³´ì_ì£¼ì_.
+gt_sql: SELECT q.name, q.reward_experience FROM quests AS q JOIN quest_progresses AS qp ON q.quest_id = qp.quest_id WHERE qp.status = 'ì§__ ì¤' OR qp.status = '__';
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE status = 'COMPLETED'
+ORDER BY quest_id;
+
+### SQL ë´:
+ì§__ ì¤__ê±°ë_ __ __¸ì_ ´ë_ê³ ë³´ì_ ê²½í_ì¹_ ë³´ì_ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+
+ì§__ ì¤__ê±°ë_ __ __¸ì_ ´ë_ê³ ë³´ì_ ê²½í_ì¹_ ë³´ì_ì£¼ì_.
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_ _ë© 'ì´_³´'ë¡ _´ë_ SQL __´ì£¼¸ì_.
+gt_sql: SELECT name, CASE WHEN level > 50 THEN 'ê³__' ELSE 'ì´_³´' END AS player_status FROM characters;
+gen_sql: SELECT character_class,
+(
+CASE WHEN level > 50
+THEN 'ê³__'
+ELSE 'ì´_³´'
+END
+) AS character_class
+FROM characters
+WHERE level > 50;
+
+### SQL ë´__ ¤ë_:
+ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_ _ë© 'ì´_³´'ë¡ _´ë_ SQL __´ì£¼¸ì_.
+
+### SQL ë´__ ê²°ê³¼:
+ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_ _ë© 'ì´_³´'ë¡ _´ë_ SQL __´ì£¼¸ì_.
+
+### SQL ë´__ ì½__:
+SELECT character_class,
+(
+CASE WHEN level > 50
+THEN 'ê³__'
+ELSE 'ì´_³´'
+END
+) AS character_class
+FROM characters
+WHERE level > 50;
+
+### SQL ë´__ ì½__ ¤ë_:
+ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_ _ë© 'ì´_³´'ë¡ _´ë_ SQL __´ì£¼¸ì_.
+
+### SQL ë´__ ê²°ê³¼:
+ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_ _ë© 'ì´_³´'ë¡ _´ë_ SQL __´ì£¼¸ì_.
+
+### SQL ë´__ ê²°ê³¼:
+ìº_¦­°ì_ _²¨ 50ë³´ë_ __ë© 'ê³__'ë¡, 50ë³´ë_","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¤í_ëª__ '_³µ' ¤ì_ê° °ì_°ë ë³´ì_ì¤
+gt_sql: SELECT skill_name FROM skill_trees WHERE skill_name LIKE '%_³µ%';
+gen_sql: SELECT skill_name, level FROM skill_trees WHERE skill_name LIKE '%_³µ%';
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­_Dê° 4 ¤í_ ¸ë¦¬ ì¤ _²¨ 3´ê±° 5 ¤í_ ´ë_ __ì¤
+gt_sql: SELECT skill_name FROM skill_trees WHERE character_id = 4 AND (level = 3 OR level = 5);
+gen_sql: SELECT skill_name FROM skill_trees WHERE character_id = 4 AND level = 3 OR level = 5
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_¼ë_ ê²½í_ì¹_ 200 __¸ë ì°¾ì_ë´
+gt_sql: SELECT * FROM quests WHERE reward_experience = 200;
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE reward_experience = 200
+
+### SQL ë´:
+SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE reward_experience = 200
+
+### SQL ë´__ ê²°ê³¼:
+
+# SELECT quest_id, name, reward_experience, reward_items
+# FROM quests
+# WHERE reward_experience = 200
+#
+# +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: _²¨ 50 ´ì_ 100 ´í_ __(Character Class) ìº_¦­°ë_ ´ë_ê³ ê²½í_ì¹_ __´ì_
+gt_sql: SELECT name, experience FROM characters WHERE level >= 50 AND level <= 100 AND character_class = '__';
+gen_sql: SELECT name, experience
+FROM characters
+WHERE level >= 50 AND level <= 100
+AND character_class = 'Soldier'
+
+### SQL ë´__ ê²°ê³¼:
+
+name | experience
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+gt_sql: SELECT reward_items, COUNT(*) AS quest_count FROM quests WHERE reward_items IS NOT NULL GROUP BY reward_items;
+gen_sql: SELECT quest_id, reward_items, COUNT(*) FROM quests GROUP BY reward_items;
+
+### SQL ë´:
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+### SQL ë´__ ê²°ê³¼:
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_ ____ë¡ ê·¸ë£¹__ ê° ___³¼ ´ë_ ____ ê°ì§ __ _ __´ì_
+
+ë³´ì_ ____ __ __¸ë_ ë³´ì_","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ __ ì¤ ë³´ì_ ê²½í_ì¹_ ê° _ __¸ì_ ´ë_ ë¬´ì_¸ê?
+gt_sql: SELECT T1.name FROM quests AS T1 JOIN quest_progresses AS T2 ON T1.quest_id = T2.quest_id WHERE T2.status = '__' ORDER BY T1.reward_experience DESC LIMIT 1;
+gen_sql: SELECT quest_id, reward_experience FROM quests
+WHERE quest_id > 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: __ê° 'ê³_ '´ë©° ê´ __¸ê __ NPC¤ì_ ëª©ë_ __ì£¼ì_.
+gt_sql: SELECT name FROM npcs WHERE location = 'ê³_ ' AND related_quest IS NOT NULL;
+gen_sql: SELECT npc_id, name, location, related_quest
+FROM npcs
+WHERE location = 'ê³_ '
+AND related_quest > 0;
+
+### SQL ë´__ ê²°ê³¼:
+npc_id | name | location | related_quest
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ì°©ì_ ì¤__ ¥ë_ ì¤ ìº_¦­ IDê° ê°  __ë¡ 10ê°__ ¥ë_ ´ë_ ë³´ì_ì¤.
+gt_sql: SELECT item_name FROM equipments WHERE equipped = TRUE ORDER BY character_id ASC LIMIT 10;
+gen_sql: SELECT item_name FROM equipments WHERE equipped = 1 AND character_id = (SELECT MIN(character_id) FROM characters);
+
+### SQL ë´:
+SELECT item_name FROM equipments WHERE equipped = 1 AND character_id = (SELECT MIN(character_id) FROM characters);
+
+### SQL ë´__ ê²°ê³¼:
+
+[equipment_id, item_name]
+[1, ""ê°ì£ ¥ê_""]
+[2, ""ê°ì£ __""]
+[3, ""ê°ì£ ¥í_""]
+[4, ""ê°ì£ ¥ê_""]
+[5, ""ê°ì£ __""]
+[6, ""ê°ì£ ¥í_""]
+[7, ""ê°ì£ ¥ê_""]
+[8, ""ê°ì£ __""]
+[9, ""ê°ì£ ¥í_""]
+[10, ""ê°ì£ ¥ê_""]
+
+### SQL ë´__ ê²°ê³¼:
+
+[equipment_id, item_name]
+[1, ""ê°ì£ ¥ê_""]
+[2, ""ê°ì£ __""]
+[3, ""ê°ì£ ¥í_""]
+[4, ""ê°ì£ ¥ê_""]
+[5, ""ê°ì£ __""]
+[6, ""ê°ì£ ¥í_""]
+[7, ""ê°ì£ ¥ê_""]
+[8, ""ê°ì£ __""]
+[9, ""ê°ì£ ¥í_""]
+[10, ""ê°ì£ ¥ê_""]
+
+### SQL ë´__ ê²°ê³¼:
+
+[equipment_id, item_name]
+[1, ""ê°ì£ ¥ê_""]
+[2,","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: _²¨ 10 ´ì_ 20 ´í_ ëª¨ë_ ìº_¦­°ë_ __´ì_ ID, ´ë_, _²¨ __´ì_
+gt_sql: SELECT player_id, name, level FROM characters WHERE level >= 10 AND level <= 20;
+gen_sql: SELECT player_id, name, level FROM characters WHERE level BETWEEN 10 AND 20;
+
+### SQL ë´:
+SELECT player_id, name, level FROM characters WHERE level BETWEEN 10 AND 20;
+
+### SQL ë´__ ê²°ê³¼:
+player_id name level
+---------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: __ ê°__ ¬ì___ ì¤ ´ë_ ¬ì__ ´ë_ ë¦¬ë_¸ê? ´ë_ ¬ì___ ´ë_ ì£¼ì_ë¥ __ì£¼ì_.
+gt_sql: SELECT players.email FROM players JOIN clans ON players.player_id = clans.leader_id ORDER BY players.date_joined DESC LIMIT 1;
+gen_sql: SELECT DISTINCT email FROM players WHERE player_id IN (SELECT player_id FROM clans WHERE clan_id = 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ____ 'ê²' ¬í_ __¸ì_ ¤ë_ __ì£¼ì_.
+gt_sql: SELECT description FROM quests WHERE reward_items LIKE '%ê²%';
+gen_sql: SELECT quest_id, name, description, reward_experience, reward_items
+FROM quests
+WHERE reward_items LIKE '%ê²%';
+
+### SQL ë´__ ê²°ê³¼:
+
+# SELECT quest_id, name, description, reward_experience, reward_items
+# FROM quests
+# WHERE reward_items LIKE '%ê²%';
+
+# +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­ IDê° 100 ìº_¦­°ì_ __ ì§__ __ ì§___  __ë¡ 3ê°__ ë³´ì_ì¤
+gt_sql: SELECT * FROM quest_progresses WHERE character_id = 100 ORDER BY progress ASC LIMIT 3;
+gen_sql: SELECT character_id, status, progress
+FROM quest_progresses
+WHERE character_id = 100
+ORDER BY progress DESC
+LIMIT 3;
+
+### SQL ë´__ ê²°ê³¼:
+
+ìº_¦­ IDê° 100 ìº_¦­°ì_ __ ì§__ __ ì§___  __ë¡ 3ê°__ ë³´ì_ì¤
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: ì§__ ì¤
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__: 100%
+
+ìº_¦­ ID: 100
+
+__ ì§__ __: __
+
+ì§__","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+gt_sql: SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+gen_sql: SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE username LIKE '%admin%';
+
+### SQL ë´__ ê²°ê³¼:
+¬ì_ ´ë_ 'admin' ¬í___ __ ê³__ _ __ì£¼ì_.
+
+### SQL ë´__ ê²°ê³¼:","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ¤ë_ '__ê³'´ë_ ¨ì_ê° ¤ì_ê° __¸ë_ ´ë_ê³ ê²½í_ì¹ ë³´ì_, ´ë_ _ê³ ê²½í_ì¹ ë³´ì_ ¤ë_ì°¨ì_¼ë_ _¦¬´ì_ ë³´ì_ì¤
+gt_sql: SELECT name, reward_experience FROM quests WHERE description LIKE '%__ê³%' ORDER BY name DESC, reward_experience ASC;
+gen_sql: SELECT name, reward_experience, reward_items
+FROM quests
+ORDER BY 1 DESC, 2 ASC
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience"": 1000,
+""reward_items"": ""__ê³¤ì_ ""
+},
+{
+""name"": ""__ê³¤ì_ ¥ì"",
+""reward_experience","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ê²½í_ì¹_ 500 ´ì_´ê_ ë³´ì_ ____ 'ê°__'´ê±° 'ê²' __¸ë ì°¾ì_ì¤
+gt_sql: SELECT * FROM quests WHERE reward_experience >= 500 AND (reward_items = 'ê°__' OR reward_items = 'ê²');
+gen_sql: SELECT quest_id, name, description, reward_experience, reward_items
+FROM quests
+WHERE reward_experience > 500
+AND reward_items IN ('ê°__', 'ê²')
+ORDER BY quest_id DESC
+
+### SQL ë´__ ê²°ê³¼:
+
+# 1
+
+# 2
+
+# 3
+
+# 4
+
+# 5
+
+# 6
+
+# 7
+
+# 8
+
+# 9
+
+# 10
+
+# 11
+
+# 12
+
+# 13
+
+# 14
+
+# 15
+
+# 16
+
+# 17
+
+# 18
+
+# 19
+
+# 20
+
+# 21
+
+# 22
+
+# 23
+
+# 24
+
+# 25
+
+# 26
+
+# 27
+
+# 28
+
+# 29
+
+# 30
+
+# 31
+
+# 32
+
+# 33
+
+# 34
+
+# 35
+
+# 36
+
+# 37
+
+# 38
+
+# 39
+
+# 40
+
+# 41
+
+# 42
+
+# 43
+
+# 44
+
+# 45
+
+# 46
+
+# 47
+
+# 48
+
+# 49
+
+# 50
+
+# 51
+
+# 52
+
+# 53","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __´ì_ê° ê° ìµ_·¼ __ ìº_¦­°ì_ ´ë_ê³ _²¨ ____.
+gt_sql: SELECT C.name, C.level FROM players AS P JOIN characters AS C ON P.player_id = C.player_id WHERE P.last_login = (SELECT MAX(last_login) FROM players);
+gen_sql: SELECT character_name, level FROM characters
+WHERE character_id IN (SELECT player_id FROM quest_progresses
+WHERE progress_id IN (SELECT progress_id FROM quest_progresses
+WHERE quest_id = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­°ê ì§__ ì¤__ __ ì¤ ë³´ì_ ê²½í_ì¹_ 100__ 200 ¬ì_ __¸ë ì°¾ì_ë³´ì_.
+gt_sql: SELECT * FROM quests AS q JOIN quest_progresses AS qp ON q.quest_id = qp.quest_id WHERE qp.status = 'ì§__ ì¤' AND q.reward_experience BETWEEN 100 AND 200;
+gen_sql: SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+### SQL ë´:
+SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+### SQL ë´__ ê²°ê³¼:
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward_experience FROM quests WHERE reward_experience BETWEEN 100 AND 200;
+
+# SELECT quest_id, reward","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ë§_ë§ ë¡_·¸¸ì___ë¡ __ 5ê° _ __, ´ë_¼ì_ __´ì_
+gt_sql: SELECT player_id, email FROM players ORDER BY last_login DESC LIMIT 5;
+gen_sql: SELECT username, email
+FROM players
+ORDER BY last_login DESC
+LIMIT 5
+
+### SQL ë´:
+SELECT username, email
+FROM players
+ORDER BY last_login DESC
+LIMIT 5
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""username"" => ""user1"",
+""email"" => ""user1@example.com""
+],
+[
+""username"" => ""user2"",
+""email"" => ""user2@example.com""
+],
+[
+""username"" => ""user3"",
+""email"" => ""user3@example.com""
+],
+[
+""username"" => ""user4"",
+""email"" => ""user4@example.com""
+],
+[
+""username"" => ""user5"",
+""email"" => ""user5@example.com""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""username"" => ""user1"",
+""email"" => ""user1@example.com""
+],
+[
+""username"" => ""user2"",
+""email"" => ""user2@example.com""
+],
+[
+""username"" => ""user3"",
+""email"" => ""user3@example.com""
+],
+[
+""username"" => ""user4"",
+""email"" => ""user4@example.com""
+],
+[
+""username"" => ""user5"",
+""email"" => ""user5@example.","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ëª¨ë_ ´ë_ __, ´ë_, ë¦¬ë_ ___ ê°¸ìì¤, ê·¸ë¦¬ê³ ë¨¼ì ë¦¬ë_ ____ë¡ ´ë¦¼ì°¨ì_, ê· ¤ì_ ´ë_ ____ë¡ ¤ë_ì°¨ì_¼ë_ __´ì_
+gt_sql: SELECT clan_id, name, leader_id FROM clans ORDER BY leader_id DESC, clan_id ASC;
+gen_sql: SELECT clan_id, name, leader_id
+FROM clans
+ORDER BY leader_id DESC, clan_id ASC;
+
+### SQL ë´:
+SELECT clan_id, name, leader_id
+FROM clans
+ORDER BY leader_id DESC, clan_id ASC;","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ë¦¬ë_ ___ 10 ´ë_ ´ë_ê³ ¤ë_ __ì¤
+gt_sql: SELECT name, description FROM clans WHERE leader_id = 10;
+gen_sql: SELECT clan_id, name, description FROM clans WHERE leader_id = 10;
+
+### SQL ë´__ _:
+SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ë´_ SQL __  ____.
+
+### SQL ë´__ ¥ë_ì¹ ¤ë_:
+SQL ","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ê° ë³´ì_ ____ë¡ ë³´ì_ ê²½í_ì¹__ ©ì_ êµ¬í_ì¤
+gt_sql: SELECT reward_items, SUM(reward_experience) AS ë³´ì__ê²½í_ì¹_ FROM quests GROUP BY reward_items;
+gen_sql: SELECT reward_experience
+FROM quests
+WHERE reward_items = '10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ ì°©ì_ ì¤__ ¥ë_¤ë_ __´ì_
+gt_sql: SELECT * FROM equipments WHERE equipped = TRUE;
+gen_sql: SELECT equipment_id FROM equipments WHERE equipped = 1;
+
+### SQL ë´:
+SELECT equipment_id FROM equipments WHERE equipped = 1;
+
+### SQL ë´__ ê²°ê³¼:
+equipment_id
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¥ë_ ì¤__ ¥ì°© __ ê² ì¤__ __ ´ë_ ¤ë_ì°¨ì_¼ë_ 5ê°__ °ì_°ë __ì¤
+gt_sql: SELECT * FROM equipments WHERE equipped = TRUE ORDER BY item_name LIMIT 5;
+gen_sql: SELECT equipment_id, item_name FROM equipments WHERE equipped = 1 ORDER BY item_name ASC LIMIT 5;
+
+### SQL ë´:
+SELECT equipment_id, item_name FROM equipments WHERE equipped = 1 ORDER BY item_name ASC LIMIT 5;
+
+### SQL ë´__ ê²°ê³¼:
+equipment_id item_name
+---------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê° __´ì_ê° ë³´ì_ ìº_¦­°ë_ ì´ _²¨ ì°¾ì_¸ì_.
+gt_sql: SELECT SUM(T2.level), T1.player_id FROM players AS T1 JOIN characters AS T2 ON T1.player_id = T2.player_id GROUP BY T1.player_id;
+gen_sql: SELECT
+SUM(level)
+FROM
+players
+LEFT JOIN
+characters
+ON
+players.player_id = characters.player_id
+GROUP BY
+players.player_id
+ORDER BY
+players.player_id
+
+### SQL ë´:
+SELECT
+SUM(level)
+FROM
+players
+LEFT JOIN
+characters
+ON
+players.player_id = characters.player_id
+GROUP BY
+players.player_id
+ORDER BY
+players.player_id
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT
+SUM(level)
+FROM
+players
+LEFT JOIN
+characters
+ON
+players.player_id = characters.player_id
+GROUP BY
+players.player_id
+ORDER BY
+players.player_id
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT
+SUM(level)
+FROM
+players
+LEFT JOIN
+characters
+ON
+players.player_id = characters.player_id
+GROUP BY
+players.player_id
+ORDER BY
+players.player_id
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT
+SUM(level)
+FROM
+","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: ì§ ë³__ ëª ëª__ NPCê° ___ê°?
+gt_sql: SELECT location, COUNT(*) FROM npcs GROUP BY location;
+gen_sql: SELECT COUNT(*) FROM npcs WHERE location IN ('[ì§_]');
+
+### SQL ë´:
+ì§ ë³__ ëª ëª__ NPCê° ___ê°?
+
+### SQL ë´__ ê²°ê³¼:
+ì§ ë³__ ëª ëª__ NPCê° ___ê°?
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ____ ì¡´ì___ __ ì¤__ __ IDê° ê°  ¤ì_ ê°__ __ ´ë_ __ì¤
+gt_sql: SELECT name FROM quests WHERE reward_items IS NOT NULL ORDER BY quest_id ASC LIMIT 5;
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+ORDER BY quest_id ASC
+
+### SQL ë´:
+ë³´ì_ ____ ì¡´ì___ __ ì¤__ __ IDê° ê°  ¤ì_ ê°__ __ ´ë_ __ì¤
+
+### SQL ë´__ ê²°ê³¼:
+
+ë³´ì_ ____ ì¡´ì___ __ ì¤__ __ IDê° ê°  ¤ì_ ê°__ __ ´ë_ __ì¤
+
+| __ ID | ´ë_ | ë³´ì_ __ |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ¤ë_ ê°__ ¬ì___ ëª ëª__?
+gt_sql: SELECT COUNT(*) FROM players WHERE DATE(date_joined) = CURDATE();
+gen_sql: SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-01-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM players WHERE date_joined = '2019-0","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ ë¬¸ì_ë¡ ë³__ ë³´ì_ì¤
+gt_sql: SELECT UPPER(name) FROM clans;
+gen_sql: SELECT CONVERT(VARCHAR(1), LEFT(clan_name, 1)) AS clan_name
+FROM clans
+WHERE clan_name LIKE '%[A-Z]%';
+
+### SQL ë´__ ê²°ê³¼:
+
+[A-Z]
+
+### SQL ë´__ ¤ë_:
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ '¬ë_ê¾'¼ë_ __ê³ ë¦¬ë_ ___ 200 ´ì_ ´ë_ ¤ë_ __ì¤
+gt_sql: SELECT description FROM clans WHERE name LIKE '%¬ë_ê¾' AND leader_id >= 200;
+gen_sql: SELECT name, description FROM clans WHERE name LIKE '%¬ë_ê¾%' AND leader_id > 200
+
+### SQL ë´:
+SELECT name, description FROM clans WHERE name LIKE '%¬ë_ê¾%' AND leader_id > 200
+
+### SQL ë´__ ê²°ê³¼:
+
+¬ë_ê¾
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.
+
+¬ë_ê¾¼ì 200 ´ì_ ë¦¬ë_ë¥ ê°ì§ ´ë___.","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: _²¨ 50 ´í_ ëª¨ë_ ìº_¦­°ì_ ´ë_ê³ ´ë_¤ë __ì¤
+gt_sql: SELECT name, character_class FROM characters WHERE level <= 50;
+gen_sql: SELECT name, character_class FROM characters WHERE level < 50;
+
+### SQL ë´:
+SELECT name, character_class FROM characters WHERE level < 50;
+
+### SQL ë´__ ê²°ê³¼:
+name character_class
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: _²¨ 50´ì_ 100´í_´ë©° ê²½í_ì¹_ 5000´ì_ ìº_¦­°ë_ ´ë_, _²¨, ê²½í_ì¹, ´ë_, ¤í_ ´ë_ ë³´ì_ì¤.
+gt_sql: SELECT T1.name, T1.level, T1.experience, T1.character_class, T2.skill_name FROM characters AS T1 JOIN skill_trees AS T2 ON T1.character_id = T2.character_id WHERE T1.level BETWEEN 50 AND 100 AND T1.experience >= 5000;
+gen_sql: SELECT character_name, level, experience, skill_name
+FROM characters
+WHERE level BETWEEN 50 AND 100
+AND experience > 5000
+ORDER BY level;
+
+### SQL ë´:
+SELECT character_name, level, experience, skill_name
+FROM characters
+WHERE level BETWEEN 50 AND 100
+AND experience > 5000
+ORDER BY level;","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ´ë_ __´ì_ê° _²¨ 50 ´ì_ ìº_¦­°ë ë³´ì___ __?
+gt_sql: SELECT DISTINCT T1.username FROM players AS T1 JOIN characters AS T2 ON T1.player_id = T2.player_id WHERE T2.level >= 50;
+gen_sql: SELECT player_id, character_id, level FROM players
+WHERE player_id > 100
+AND character_id > 100
+AND level > 50
+
+### SQL ë´:
+SELECT player_id, character_id, level FROM players
+WHERE player_id > 100
+AND character_id > 100
+AND level > 50
+
+### SQL ë´__ ê²°ê³¼:
+player_id character_id level
+---------- ----------- -----------
+101 102 50
+102 103 50
+103 104 50
+104 105 50
+105 106","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: character_idê° 7´ê_ ¥ì°© ¥ë_ë¥ __ ´ë_ _¼ë_ __´ì_
+gt_sql: SELECT * FROM equipments WHERE character_id = 7 AND equipped = TRUE ORDER BY item_name DESC;
+gen_sql: SELECT character_id, item_name FROM equipments
+ORDER BY item_name DESC
+
+### SQL ë´:
+SELECT character_id, item_name FROM equipments
+ORDER BY item_name DESC
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet
+3 armor
+2 boots
+1 pants
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name
+---------- ----------
+7 sword
+6 spear
+5 shield
+4 helmet","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê²½í_ 5000000 ´ì_´ê±° ì§__ __ ìº_¦­°ë_ ´ë_ ë¬´ì_¸ê
+gt_sql: SELECT name FROM characters WHERE experience >= 5000000 OR character_class = '__';
+gen_sql: SELECT name FROM characters WHERE experience > 5000000 AND character_class = '__'
+
+### SQL ë´:
+SELECT name FROM characters WHERE experience > 5000000 AND character_class = '__'
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+__
+
+### SQL ë´__ ê²°ê³¼:
+
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ê° __ê° 2021 1 1¼ë 2021 12 31¼ê_ì§ __´ì_¤ì_ ì°¾ì_ì¤
+gt_sql: SELECT * FROM players WHERE date_joined >= '2021-01-01' AND date_joined <= '2021-12-31';
+gen_sql: SELECT DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') AS 'ê° __',
+FROM players
+WHERE DATEDIFF(MONTH, DATE_JOINED, '2021-12-31') > 0
+ORDER BY DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') DESC;
+
+### SQL ë´:
+SELECT DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') AS 'ê° __',
+FROM players
+WHERE DATEDIFF(MONTH, DATE_JOINED, '2021-12-31') > 0
+ORDER BY DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') DESC;
+
+### SQL ë´__ ê²°ê³¼:
+ê° __
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ëª¨ë_ ê¸°ì_ ¸ë¦¬ë¥ ê¸°ì_ ´ë_ __ë¡ __´ì_ ë³´ì_ì¤
+gt_sql: SELECT * FROM skill_trees ORDER BY skill_name ASC;
+gen_sql: SELECT skill_name, level FROM skill_trees ORDER BY skill_name;
+
+### SQL ë´:
+SELECT skill_name, level FROM skill_trees ORDER BY skill_name;
+
+### SQL ë´__ ê²°ê³¼:
+skill_name | level
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ´ë_ __¸ê ê° ë§_ ìº_¦­°ì_ê² ì§__ ì¤__ì§ __ì£¼ì_
+gt_sql: SELECT quest_id FROM quest_progresses WHERE status = 'ì§__ì¤' GROUP BY quest_id ORDER BY COUNT(*) DESC LIMIT 1;
+gen_sql: SELECT quest_id, COUNT(*) FROM quest_progresses GROUP BY quest_id;
+
+### SQL ë´:
+SELECT quest_id, COUNT(*) FROM quest_progresses GROUP BY quest_id;
+
+### SQL ë´__ ê²°ê³¼:
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê²½í_ì¹_ 100,000 ´ì_ ___ ëª ê°__ì§ __ì¤
+gt_sql: SELECT COUNT(*) FROM characters WHERE experience >= 100000;
+gen_sql: SELECT COUNT(*) FROM characters WHERE experience > 100000;
+
+### SQL ë´:
+SELECT COUNT(*) FROM characters WHERE experience > 100000;
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100000
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê° __´ì_ë³__ ê° ´ë_¤ë_ë¡ ë³´ì_ ìº_¦­ _ ______.
+gt_sql: SELECT P.player_id, C.character_class, COUNT(*) FROM players AS P JOIN characters AS C ON P.player_id = C.player_id GROUP BY P.player_id, C.character_class;
+gen_sql: SELECT player_id, count(*)
+FROM players
+GROUP BY player_id
+HAVING count(*) > 0
+ORDER BY player_id
+
+### SQL ë´:
+SELECT player_id, count(*)
+FROM players
+GROUP BY player_id
+HAVING count(*) > 0
+ORDER BY player_id
+
+### SQL ë´__ ê²°ê³¼:
+player_id | count(*)
+----------+----------
+1 | 1
+2 | 1
+3 | 1
+4 | 1
+5 | 1
+6 | 1
+7 | 1
+8 | 1
+9 | 1
+10 | 1
+11 | 1
+12 | 1
+13 | 1
+14 | 1
+15 | 1
+16 | 1
+17 | 1
+18 | 1
+19 | 1
+20 | 1
+21 | 1
+22 | 1
+23 | 1
+24 | 1
+25 | 1
+26 | 1
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: player_idê° 2, 4, 6 ´ë___ character ´ë_ê³ character_classë¥ __ì¤
+gt_sql: SELECT name, character_class FROM characters WHERE player_id IN (2, 4, 6);
+gen_sql: SELECT name, character_class FROM characters WHERE player_id IN (2, 4, 6);
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT name, character_class FROM characters WHERE player_id IN (2, 4, 6);
+
+name character_class
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ìº_¦­°ë_ ì¤__ _²¨ ê° _ __´ì_ username ë¬´ì_¸ê?
+gt_sql: SELECT P.username FROM players AS P JOIN characters AS C ON P.player_id = C.player_id ORDER BY C.level DESC LIMIT 1;
+gen_sql: SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM players WHERE player_id = (SELECT MAX(player_id) FROM characters);
+
+### ê²°ê³¼:
+
+### SQL:
+SELECT username FROM","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __´ì_ IDê° 100 ìº_¦­°ì_ __ ì§__ __ ì°¾ì_ë³´ì_.
+gt_sql: SELECT q1.quest_id, q1.status, q1.progress FROM quest_progresses AS q1 JOIN characters AS c1 ON q1.character_id = c1.character_id WHERE c1.player_id = 100;
+gen_sql: SELECT quest_progresses.progress_id,
+quest_progresses.quest_id,
+quest_progresses.character_id,
+quest_progresses.status,
+quest_progresses.progress
+FROM quest_progresses
+WHERE quest_progresses.quest_id = 100
+AND quest_progresses.character_id = 100
+ORDER BY quest_progresses.progress_id;
+
+### SQL ë´__ ê²°ê³¼:
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__ ê²°ê³¼
+
+# SQL ë´__","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ê°__ 2021 1 1¼ë 2021 12 31 ¬ì_ __´ì_¤ì_ ì°¾ì_ì¤
+gt_sql: SELECT * FROM players WHERE date_joined BETWEEN '2021-01-01' AND '2021-12-31';
+gen_sql: SELECT DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') AS 'ê°__',
+DATEDIFF(MONTH, LAST_LOGIN, '2021-12-31') AS 'ë§_ë§ ë¡_·¸¸ì_'
+FROM players
+WHERE DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') BETWEEN 1 AND 12
+ORDER BY DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') DESC;
+
+### SQL ë´:
+SELECT DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') AS 'ê°__',
+DATEDIFF(MONTH, LAST_LOGIN, '2021-12-31') AS 'ë§_ë§ ë¡_·¸¸ì_'
+FROM players
+WHERE DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') BETWEEN 1 AND 12
+ORDER BY DATEDIFF(MONTH, DATE_JOINED, '2021-01-01') DESC;
+
+### SQL ë´__ ê²°ê³¼:
+ê°__ 2021 1 1¼ë 2021 12 ","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­ IDê° 200 ìº_¦­°ì_ ¤í_ ì¤ _²¨ 2 ´ì_ ¤í_ _²¨  __ë¡ 5ê°__ ë³´ì_ì¤.
+gt_sql: SELECT * FROM skill_trees WHERE character_id = 200 AND level >= 2 ORDER BY level ASC LIMIT 5;
+gen_sql: SELECT skill_name, level FROM skill_trees
+WHERE character_id = 200
+ORDER BY level DESC
+LIMIT 5;
+
+### SQL ë´__ ê²°ê³¼:
+skill_name | level
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ ì§__ __ê° 'ì§__ ì¤'´ë©° ê²½í_ì¹_ 500ë³´ë_ ë§_ ìº_¦­°ì_ ___ ´ë_ __ì£¼ì_.
+gt_sql: SELECT c.character_id, c.name FROM characters AS c JOIN quest_progresses AS q ON c.character_id = q.character_id WHERE q.status = 'ì§__ ì¤' AND c.experience > 500;
+gen_sql: SELECT player_id, username, email, password_hash, date_joined, last_login
+FROM players
+WHERE character_id IN (
+SELECT character_id
+FROM quest_progresses
+WHERE status = 'ì§__ ì¤'
+AND progress > 500
+AND character_id = (
+SELECT character_id
+FROM characters
+WHERE player_id = (
+SELECT player_id
+FROM quest_progresses
+WHERE quest_id = (
+SELECT quest_id
+FROM quests
+WHERE status = 'ì§__ ì¤'
+AND progress > 500
+)
+)
+)
+ORDER BY player_","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ê° __ê° 2021 1 1 ´í_ __´ì_ ì¤__ 20ë²_§¸ë¶ 10ëª__ ¬ì_ ´ë_ __ì¤
+gt_sql: SELECT username FROM players WHERE date_joined > '2021-01-01' LIMIT 10 OFFSET 19;
+gen_sql: SELECT username FROM players WHERE date_joined > '2021-01-01' ORDER BY RAND() LIMIT 10;
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""username"" => ""user1""
+],
+[
+""username"" => ""user2""
+],
+[
+""username"" => ""user3""
+],
+[
+""username"" => ""user4""
+],
+[
+""username"" => ""user5""
+],
+[
+""username"" => ""user6""
+],
+[
+""username"" => ""user7""
+],
+[
+""username"" => ""user8""
+],
+[
+""username"" => ""user9""
+],
+[
+""username"" => ""user10""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""username"" => ""user1""
+],
+[
+""username"" => ""user2""
+],
+[
+""username"" => ""user3""
+],
+[
+""username"" => ""user4""
+],
+[
+""username"" => ""user5""
+],
+[
+""username"" => ""user6""
+],
+[
+""username"" => ""user7""
+],
+[
+""username"" => ""user8""
+],
+[
+""username"" => ""user9""
+],
+[
+""username"" => ""user10""
+]","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ê²½í_ì¹ ë³´ì_ 500 ë¯¸ë_ __¸ë_ ì´ ê°__?
+gt_sql: SELECT COUNT(*) FROM quests WHERE reward_experience < 500;
+gen_sql: SELECT COUNT(*) FROM quests WHERE reward_experience < 500;
+
+### SQL ë´:
+SELECT COUNT(*) FROM quests WHERE reward_experience < 500;
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:
+COUNT(*)
+----------
+100
+
+### SQL ë´__ ê²°ê³¼:","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: ê°_ __ __ NPC¤ì_ ´ë_ ì°¾ì_ì¤
+gt_sql: SELECT A.name, B.name FROM npcs A INNER JOIN npcs B ON A.location = B.location WHERE A.npc_id != B.npc_id;
+gen_sql: SELECT name FROM npcs WHERE location = '[location]'
+
+### SQL ë´:
+SELECT name FROM npcs WHERE location = '[location]'
+
+### SQL ë´__ ê²°ê³¼:
+
+npcs_id name
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ê° ìµ_·¼ ë¡_·¸¸í_ ´ë_ ë¦¬ë_ê° _µ¬¸ì, ë¦¬ë_ ´ë_ê³ ´ë_¼ì_ ë³´ì_ì£¼ì_.
+gt_sql: SELECT players.username, players.email FROM players JOIN clans ON clans.leader_id = players.player_id WHERE players.last_login = (SELECT MAX(last_login) FROM players);
+gen_sql: SELECT DISTINCT clan.name, clan.leader_id, clan.leader_id.email
+FROM players
+JOIN clans ON players.player_id = clans.leader_id
+WHERE players.date_joined > (SELECT MAX(date_joined) FROM players)
+ORDER BY players.date_joined DESC
+
+### SQL ë´__ ê²°ê³¼:
+
+ê° ìµ_·¼ ë¡_·¸¸í_ ´ë_ ë¦¬ë_ê° _µ¬¸ì, ë¦¬ë_ ´ë_ê³ ´ë_¼ì_ ë³´ì_ì£¼ì_.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: ê´ __ ë²__ê° 100´í_ NPC¤ì_ ê´ __ ë²__ ê¸°ì¼ë_ ´ë¦¼ì°¨ì_¼ë_ ____, __ 5ê°__ NPC ´ë_ê³ _ ë³´ì_ì¤.
+gt_sql: SELECT name, role FROM npcs WHERE related_quest <= 100 ORDER BY related_quest DESC LIMIT 5;
+gen_sql: SELECT name, role, location FROM npcs
+WHERE related_quest <= 100
+ORDER BY related_quest DESC
+LIMIT 5;
+
+### SQL ë´:
+SELECT name, role, location FROM npcs
+WHERE related_quest <= 100
+ORDER BY related_quest DESC
+LIMIT 5;","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ê° '____' __ ì§__ __ ëª¨ë_ ì°¾ì_ì£¼ê_,  ì¤__ 20ë²_§¸ë¶ 10ê° ª©ë§ ì¶__´ì_
+gt_sql: SELECT * FROM quest_progresses WHERE status = '____' LIMIT 10 OFFSET 20;
+gen_sql: SELECT * FROM quest_progresses WHERE status = '____' ORDER BY progress DESC LIMIT 10;
+
+### ê²°ê³¼:
+
+progress_id quest_id character_id status progress
+---------- ----------- ----------- ----------- -----------
+1 1 1 1 ____ 1
+2 1 1 1 ____ 2
+3 1 1 1 ____ 3
+4 1 1 1 ____ 4
+5 1 1 1 ____ 5
+6 1 1 1 ____ 6
+7 1 1 1 ____ 7
+8 1 1 1 ____ 8
+9 1 1 1 ____ 9
+10 1 1 1 ____ 10
+
+### SQL ë´__ ¤ë_:
+
+SQL ë´_ SQL ____ ë´____.
+
+SQL ë´_ DDL ____ SQL __©ë_.
+
+SQL ë´_ DDL ____ SQL ___¸° _¬¸, DDL __  __ ê¶__ __ ©ë_.
+
+SQL ë´_ DDL ____ SQL ___¸° _¬¸, DDL __  __ ê¶__ __ ©ë_.
+
+SQL ë´_ DDL ____ SQL ___¸°","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ ´ë_ '©ì_'ë¡ ___±° ë¦¬ë_ IDê° 500ë³´ë_  ´ë_ ë¬´ì_¸ê
+gt_sql: SELECT * FROM clans WHERE name LIKE '©ì_%' OR leader_id > 500;
+gen_sql: SELECT * FROM clans WHERE name LIKE '%©ì_%' OR leader_id > 500;
+
+### SQL ë´:
+SELECT * FROM clans WHERE name LIKE '%©ì_%' OR leader_id > 500;
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+{
+""name"": ""©ì_"",
+""leader_id"": 501
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 502
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 503
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 504
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 505
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 506
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 507
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 508
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 509
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 510
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 511
+},
+{
+""name"": ""©ì_"",
+""leader_id"": 512
+},
+{
+""","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: __ ´ë_ 'ê²'¼ë_ ____ ê²__ ´ë_ __ë¡ ë³´ì_ì¤
+gt_sql: SELECT item_name FROM inventory_items WHERE item_name LIKE 'ê²%' ORDER BY item_name;
+gen_sql: SELECT item_name FROM inventory_items WHERE item_name LIKE '%ê²%';
+
+### SQL ë´:
+SELECT item_name FROM inventory_items WHERE item_name LIKE '%ê²%';
+
+### SQL ë´__ ê²°ê³¼:
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+ê²
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê²½í_ì¹_ 5000 ´ì_ ìº_¦­°ë_ ´ë_ë§ ê°¸ìë´
+gt_sql: SELECT name FROM characters WHERE experience >= 5000;
+gen_sql: SELECT name FROM characters WHERE experience > 5000;
+
+### SQL ë´:
+SELECT name FROM characters WHERE experience > 5000;
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+""name""
+]
+
+### SQL ë´__","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: player_idê° 5 __´ì_ ëª¨ë_ ìº_¦­ _³´ë¥ ë³´ì_ì¤.
+gt_sql: SELECT * FROM characters WHERE player_id = 5;
+gen_sql: SELECT player_id, name, level, experience, character_class
+FROM characters
+WHERE player_id = 5;
+
+### SQL ë´:
+SELECT player_id, name, level, experience, character_class
+FROM characters
+WHERE player_id = 5;
+
+### SQL ë´__ ê²°ê³¼:
+player_id name level experience character_class
+---------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: ê²½í_ì¹_ 100,000 ´ì_´ê_ _²¨ 50 ´ì_ ìº_¦­°ì_ __´ì_ ID ë¬´ì_¸ê
+gt_sql: SELECT DISTINCT player_id FROM characters WHERE experience >= 100000 AND level >= 50;
+gen_sql: SELECT player_id FROM characters WHERE experience > 100000 AND level > 50
+
+### SQL ë´:
+SELECT player_id FROM characters WHERE experience > 100000 AND level > 50
+
+### SQL ë´__ ê²°ê³¼:
+player_id
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê²½í_ 5000 ´ì_ ìº_¦­°ê ¥ì°© ¥ë_ ê· ¥ë_ ´ë_ ì°¾ì_¸ì_.
+gt_sql: SELECT e.*, e.item_name FROM characters AS c JOIN equipments AS e ON c.character_id = e.character_id WHERE c.experience >= 5000;
+gen_sql: SELECT character_id, item_name, experience
+FROM characters
+WHERE character_id IN (
+SELECT character_id
+FROM equipments
+WHERE equipped = TRUE
+AND experience > 5000
+);
+
+### SQL ë´:
+SELECT character_id, item_name, experience
+FROM characters
+WHERE character_id IN (
+SELECT character_id
+FROM equipments
+WHERE equipped = TRUE
+AND experience > 5000
+);
+
+### SQL ë´__ ê²°ê³¼:
+character_id item_name experience
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ë§_ë§ ë¡_·¸¸ì_ 2023-03-01 ´í_ __´ì_ ì¤ 'Thor', 'Hulk', 'Hawkeye' ´ë___ username ê°ì§ __´ì_ player_idë¥ __ì¤.
+gt_sql: SELECT player_id FROM players WHERE last_login > '2023-03-01' AND username IN ('Thor', 'Hulk', 'Hawkeye');
+gen_sql: SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+### SQL ë´:
+SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+### SQL ë´__ ê²°ê³¼:
+SELECT player_id
+FROM players
+WHERE username IN ('Thor', 'Hulk', 'Hawkeye')
+AND last_login > '2023-03-01';
+
+###","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ëª¨ë_ ìº_¦­°ì_ ´ë_, ê²½í_ì¹, __ ì§__ __ ë¬´ì_¸ê?
+gt_sql: SELECT T2.name, T2.experience, T3.status FROM characters AS T2 LEFT JOIN quest_progresses AS T3 ON T2.character_id = T3.character_id;
+gen_sql: SELECT name, experience, status FROM characters;
+SELECT name, experience, status FROM quest_progresses;
+
+### Result:
+name experience status
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: player_idê° 200 __´ì_ê° ê°ì§ê³ __ ëª¨ë_ ìº_¦­°ì_ character_id, name, level, skill_name ____.
+gt_sql: SELECT T1.character_id, T1.name, T1.level, T2.skill_name FROM characters AS T1 JOIN skill_trees AS T2 ON T1.character_id = T2.character_id WHERE T1.player_id = 200;
+gen_sql: SELECT character_id, name, level, skill_name
+FROM characters
+WHERE player_id = 200;
+
+### SQL ë´:
+SELECT character_id, name, level, skill_name
+FROM characters
+WHERE player_id = 200;
+
+### SQL ë´__ ê²°ê³¼:
+character_id name level skill_name
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+Question: Warrior ´ë_¤ë __ __´ì_ ¬ì___ ë¬´ì___ê¹?
+gt_sql: SELECT username FROM players JOIN characters ON players.player_id = characters.player_id WHERE characters.character_class = 'Warrior';
+gen_sql: SELECT username FROM players WHERE character_class = 'Warrior'
+
+### SQL ë´:
+SELECT username FROM players WHERE character_class = 'Warrior'
+
+### SQL ë´__ ê²°ê³¼:
+username
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ë³´ì_ ê²½í_ì¹_ 500 ´ì_ __ ì¤__ 'ê¸__' ¤ì_ê° ´ë_ ë¬´ì_¸ê
+gt_sql: SELECT name FROM quests WHERE reward_experience >= 500 AND name LIKE '%ê¸__%';
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE reward_experience > 500
+AND name LIKE '%ê¸__%';
+
+### ê²°ê³¼:
+
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¸ë²¤_¦¬ ___ 100, 200, 300 ´ë___ ____ ´ë_ __ ¶ì_.
+gt_sql: SELECT item_name FROM inventory_items WHERE inventory_id IN (100, 200, 300);
+gen_sql: SELECT item_name FROM inventory_items WHERE inventory_id IN (100, 200, 300);
+
+### SQL ë´:
+SELECT item_name FROM inventory_items WHERE inventory_id IN (100, 200, 300);
+
+### SQL ë´__ ê²°ê³¼:
+item_name
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¥ì°© ¥ë_ê° 5ê° ´ì_ ê²½ì_ ìº_¦­ ID ¥ë_ _ êµ¬í_ì¤
+gt_sql: SELECT character_id, COUNT(*) AS ¥ë_ FROM equipments WHERE equipped = 1 GROUP BY character_id HAVING COUNT(*) >= 5;
+gen_sql: SELECT character_id, COUNT(*) FROM equipments
+GROUP BY character_id
+HAVING COUNT(*) > 4
+ORDER BY character_id
+
+### SQL ë´__ ¤ë_
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __ SQL ì¿¼ë¦¬ë¥ __©ë_.
+
+SQL ë´_ DDL __","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: skill_tree_idê° 150 ì´_³¼_©° ¤í_ _²¨ 3 ë¯¸ë_ ¤í_ ¤í_ ´ë_ê³ _²¨ ©ì_ ê²°ê³¼ë¥ ì¡°í_´ì£¼¸ì_
+gt_sql: SELECT CONCAT(skill_name, ' - _²¨ ', level) AS skill_and_level FROM skill_trees WHERE skill_tree_id > 150 AND level < 3;
+gen_sql: SELECT skill_name, level FROM skill_trees WHERE skill_tree_id > 150 AND level < 3;
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+
+### SQL ë´__ ¨ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ì§___ 70 ´ì_´ê±° 30 ´í_ ì§__ _³´ë¥ ê°¸ì_¸ì_
+gt_sql: SELECT * FROM quest_progresses WHERE progress >= 70 OR progress <= 30;
+gen_sql: SELECT * FROM quest_progresses WHERE progress > 70 OR progress < 30;
+
+### SQL ë´__ ¥ì_:
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_ SQL ____ ë´____.
+- SQL ë´_","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ê° ´ë_ ´ë_ ëª ê¸__ì§ ì¡°í___, ê· ê¸ __ °ë_ ë¶____ ê° ê¸ __ ´ë_ ê°__ë¥ __ì£¼ì_.
+gt_sql: SELECT LENGTH(name) as name_length, COUNT(*) FROM clans GROUP BY name_length;
+gen_sql: SELECT
+clan_id,
+name,
+description,
+COUNT(*) AS 'ê°__'
+FROM
+clans
+GROUP BY
+name
+ORDER BY
+name
+
+### ê²°ê³¼:
+
+1. 1 ê¸: 1
+2. 2 ê¸: 1
+3. 3 ê¸: 1
+4. 4 ê¸: 1
+5. 5 ê¸: 1
+6. 6 ê¸: 1
+7. 7 ê¸: 1
+8. 8 ê¸: 1
+9. 9 ê¸: 1
+10. 10 ê¸: 1
+11. 11 ê¸: 1
+12. 12 ê¸: 1
+13. 13 ê¸: 1
+14. 14 ê¸: 1
+15. 15 ê¸: 1
+16. 16 ê¸: 1
+17. 17 ê¸: 1
+18. 18 ê¸: 1
+19. 19 ê¸: 1
+20. 20 ê¸: 1
+21. 21 ê¸: 1
+22. 22 ê¸: 1
+23. 23 ê¸: 1
+24. 24 ê¸: 1
+25. 25 ê¸: 1
+26. 26 ê¸: 1
+27. 27 ê¸: 1
+2","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¹ì_ ìº_¦­(character_idê° 101 ê²½ì_) __ __ ©ì_ ë³´ì_ì£¼ì_.
+gt_sql: SELECT SUM(quantity) FROM inventory_items WHERE character_id = 101;
+gen_sql: SELECT item_name,
+SUM(quantity)
+FROM inventory_items
+WHERE character_id = 101;
+
+### SQL ë´__ ê²°ê³¼:
+
+item_name | SUM(quantity)
+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ 'ë°__' ¤ì_ê° ´ë_ ¤ë_ __ë¡ 3ê° ´ë_ë§ °ì___ 7ê° ë³´ì_ì¤
+gt_sql: SELECT * FROM clans WHERE name LIKE '%ë°__%' ORDER BY description LIMIT 7 OFFSET 3;
+gen_sql: SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER BY name
+
+### SQL ë´:
+SELECT DISTINCT clan_id, name, description
+FROM clans
+ORDER","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+Question: ëª¨ë_ __¸ë ë³´ì_ ê²½í_ì¹_ _ __ë¡ __´ì_ ë³´ì_ì¤
+gt_sql: SELECT * FROM quests ORDER BY reward_experience DESC;
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+ORDER BY reward_experience DESC
+
+### SQL ë´:
+SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+ORDER BY reward_experience DESC
+
+### SQL ë´__ ê²°ê³¼:
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­ IDê° 10 ê²½ì_ ¤í_ ¸ë¦¬ ID ¤í_ ´ë_ __ ¶ì_.
+gt_sql: SELECT skill_tree_id, skill_name FROM skill_trees WHERE character_id = 10;
+gen_sql: SELECT skill_tree_id, skill_name FROM skill_trees WHERE character_id = 10;
+
+### SQL ë´__ ê²°ê³¼:
+skill_tree_id skill_name
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: character_idê° 50ë³´ë_  ìº_¦­°ê ê°ì§ ¥ë_ ê°__ë¥ êµ¬í_ì¤
+gt_sql: SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+gen_sql: SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼:
+SELECT COUNT(*) FROM equipments WHERE character_id > 50;
+
+### SQL ë´__ ê²°ê³¼","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê° ë§_ ¥ë_ë¥ ¥ì°© ìº_¦­°ì_ ´ë_ê³ _²¨ ë¬´ì_¸ê?
+gt_sql: SELECT T2.name, T2.level FROM equipments AS T1 JOIN characters AS T2 ON T1.character_id = T2.character_id WHERE T1.equipped = true GROUP BY T2.name, T2.level ORDER BY COUNT(*) DESC LIMIT 1;
+gen_sql: SELECT
+player_id,
+name,
+level
+FROM
+characters
+WHERE
+player_id = (SELECT
+MAX(player_id)
+FROM
+equipments
+GROUP BY
+character_id);
+
+### Result:
+player_id name level
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE skill_trees (
+  skill_tree_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  skill_name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìµ_·¼ ë¡_·¸¸ì_ 7 ´ì_ ì§ __´ì_ _ëª_³¼ ìº_¦­ ´ë_ ______.
+gt_sql: SELECT P.username, C.name FROM players AS P JOIN characters AS C ON P.player_id = C.player_id WHERE P.last_login <= DATE_SUB(NOW(), INTERVAL 7 DAY);
+gen_sql: SELECT username, character_name FROM players
+WHERE last_login < DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE_ADD(DATE","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­ IDê° 3´ê_ ì§__ __ê° 'ê¸°ì_' ê²½ì_ ì§__ë¥__ __ì£¼ì_
+gt_sql: SELECT progress FROM quest_progresses WHERE character_id = 3 AND status = 'ê¸°ì_';
+gen_sql: SELECT
+(SELECT COUNT(*) FROM quest_progresses WHERE character_id = 3 AND status = 'ê¸°ì_')
+FROM quests
+WHERE quest_id = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE players (
+  player_id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  date_joined DATETIME NOT NULL,
+  last_login DATETIME
+);
+Question: ´ë_ ì£¼ì_ê° __ ëª¨ë_ __´ì_ ë¦¬ì_¸ë ê°¸ìì¤
+gt_sql: SELECT * FROM players WHERE email IS NOT NULL;
+gen_sql: SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´:
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:
+
+SELECT * FROM players WHERE email IS NOT NULL;
+
+### SQL ë´__ ê²°ê³¼:","{""resolve_yn"": ""yes""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE clans (
+  clan_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT,
+  leader_id INT NOT NULL,
+  FOREIGN KEY (leader_id) REFERENCES players(player_id)
+);
+Question: ´ë_ ´ë_ '©ì_'ê° ¬í_ ´ë_ ´ë_ê³ ¤ë_ ê²°í_´ì_ ë³´ì_ì¤.
+gt_sql: SELECT CONCAT(name, ' - ', description) FROM clans WHERE name LIKE '%©ì_%';
+gen_sql: SELECT clan_id, name, description
+FROM clans
+WHERE name LIKE '%©ì_%';
+
+### SQL ë´__ ê²°ê³¼:
+
+[
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""©ì_¤ì_ ëª¨ì_""
+},
+{
+""name"": ""©ì_"",
+""description"": ""","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE quests (
+  quest_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  reward_experience INT NOT NULL,
+  reward_items VARCHAR(255)
+);
+CREATE TABLE quest_progresses (
+  progress_id INT PRIMARY KEY AUTO_INCREMENT,
+  quest_id INT NOT NULL,
+  character_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  progress INT NOT NULL,
+  FOREIGN KEY (quest_id) REFERENCES quests(quest_id),
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ìº_¦­°ê __ __ ì¤ ë³´ì_ ê²½í_ì¹_ 100 ´ì_ 200 ´í_ __¸ì_ ´ë_ê³ ë³´ì_ ____ ë³´ì_ì£¼ì_.
+gt_sql: SELECT q.name, q.reward_items FROM quests AS q JOIN quest_progresses AS qp ON q.quest_id = qp.quest_id WHERE qp.status = '__' AND q.reward_experience BETWEEN 100 AND 200;
+gen_sql: SELECT quest_id, name, reward_experience, reward_items
+FROM quests
+WHERE reward_experience BETWEEN 100 AND 200
+ORDER BY quest_id;
+
+### SQL ë´__ ê²°ê³¼:
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+
+#
+","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE npcs (
+  npc_id INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  role VARCHAR(255),
+  location VARCHAR(255),
+  related_quest INT,
+  FOREIGN KEY (related_quest) REFERENCES quests(quest_id)
+);
+Question: ê° _ë³__ npc ì´ _ __ì£¼ì_.
+gt_sql: SELECT role, COUNT(npc_id) FROM npcs GROUP BY role;
+gen_sql: SELECT COUNT(*) FROM npcs
+
+### SQL ë´__ ê²°ê³¼:
+
+npcs
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE equipments (
+  equipment_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  equipped BOOLEAN NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¥ë_ê° ¥ì°© __ ìº_¦­°ì_ __´ì_ ID __ ´ë_ ______.
+gt_sql: SELECT T1.player_id, T2.item_name FROM characters AS T1 JOIN equipments AS T2 ON T1.character_id = T2.character_id WHERE T2.equipped = TRUE;
+gen_sql: SELECT player_id, item_name
+FROM characters
+WHERE equipped = 1
+ORDER BY player_id;
+
+### SQL ë´:
+SELECT player_id, item_name
+FROM characters
+WHERE equipped = 1
+ORDER BY player_id;","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ¸ë²¤_¦¬ ____ ´ë_ê³ __, ´ë_ ____ __ ìº_¦­°ì_ ´ë_¤ë ë³´ì_ì£¼ì_.
+gt_sql: SELECT T2.item_name, T2.quantity, T1.character_class FROM characters AS T1 JOIN inventory_items AS T2 ON T1.character_id = T2.character_id;
+gen_sql: SELECT item_name, quantity, character_class
+FROM inventory_items
+WHERE character_id = (SELECT character_id FROM characters
+WHERE character_id = (SELECT character_id FROM players
+WHERE player_id = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","{""resolve_yn"": ""no""}",,
+"Based on below DDL and Question, evaluate gen_sql can resolve Question. If gen_sql and gt_sql do equal job, return ""yes"" else return ""no"". Output JSON Format: {""resolve_yn"": """"}
+
+DDL: CREATE TABLE characters (
+  character_id INT PRIMARY KEY AUTO_INCREMENT,
+  player_id INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  level INT NOT NULL,
+  experience BIGINT NOT NULL,
+  character_class VARCHAR(255) NOT NULL,
+  FOREIGN KEY (player_id) REFERENCES players(player_id)
+);
+CREATE TABLE inventory_items (
+  inventory_id INT PRIMARY KEY AUTO_INCREMENT,
+  character_id INT NOT NULL,
+  item_name VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  FOREIGN KEY (character_id) REFERENCES characters(character_id)
+);
+Question: ê²½í_ 1000__ 2000 ¬ì_ ìº_¦­°ë_ ´ë_, _²¨, ê²½í_ì¹, __ ´ë_ ë° __ ì°¾ì_¸ì_.
+gt_sql: SELECT c.name, c.level, c.experience, i.item_name, i.quantity FROM characters AS c JOIN inventory_items AS i ON c.character_id = i.character_id WHERE c.experience BETWEEN 1000 AND 2000;
+gen_sql: SELECT character_id, name, level, experience, item_name, quantity
+FROM characters
+WHERE experience BETWEEN 1000 AND 2000
+ORDER BY character_id;
+
+### SQL ë´:
+SELECT character_id, name, level, experience, item_name, quantity
+FROM characters
+WHERE experience BETWEEN 1000 AND 2000
+ORDER BY character_id;","{""resolve_yn"": ""no""}",,
