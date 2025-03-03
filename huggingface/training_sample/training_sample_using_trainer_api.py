@@ -88,6 +88,13 @@ if __name__ == '__main__':
         predictions = np.argmax(logits, axis=-1)
         return {"accuracy": (predictions == labels).mean()}
 
+    # 학습시 NVIDA 그래픽카드 사용을 위한 cuda 사용가능 여부 확인
+    print(f"cuda is available: {torch.cuda.is_available()}")
+
+    # 디바이스 체크
+    device = ("cuda" if torch.cuda.is_available() else "mps")
+    print(f"using device: {device}")
+
     ##############################################################################
     # Trainier를 이용한 학습
     trainer = Trainer(model=model,
@@ -97,8 +104,6 @@ if __name__ == '__main__':
                       tokenizer=tokenizer,
                       compute_metrics=compute_metrics)
 
-    # 학습시 NVIDA 그래픽카드 사용을 위한 cuda 사용가능 여부 확인
-    print(f"cuda is available: {torch.cuda.is_available()}")
     # 학습
     trainer.train()
 
