@@ -21,6 +21,7 @@ if __name__ == '__main__':
 
     # 프롬프트를 넣어 결과를 확인
     model_id = 'beomi/Yi-Ko-6B'
+    # model_id = 'ravea/yi-ko-6b-text2sql'
     model_pipe = make_inference_pipeline(model_id)
 
     result = model_pipe(example, do_sample=False,
