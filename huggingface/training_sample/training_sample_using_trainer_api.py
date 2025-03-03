@@ -100,7 +100,6 @@ if __name__ == '__main__':
     device = "cuda" if torch.cuda.is_available() else \
         "mps" if torch.backends.mps.is_available() else "cpu"
     print(f"using device: {device}")
-    device = torch.device(device)
 
     ##############################################################################
     # Trainier를 이용한 학습
@@ -109,8 +108,7 @@ if __name__ == '__main__':
                       train_dataset=train_dataset,
                       eval_dataset=valid_dataset,
                       tokenizer=tokenizer,
-                      compute_metrics=compute_metrics,
-                      device=device)
+                      compute_metrics=compute_metrics)
 
     # 학습
     trainer.train()
