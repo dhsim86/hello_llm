@@ -88,12 +88,19 @@ if __name__ == '__main__':
         predictions = np.argmax(logits, axis=-1)
         return {"accuracy": (predictions == labels).mean()}
 
+    ##############################################################################
+    # 학습할 디바이스 설정
+
     # 학습시 NVIDA 그래픽카드 사용을 위한 cuda 사용가능 여부 확인
     print(f"cuda is available: {torch.cuda.is_available()}")
 
-    # 디바이스 체크
-    device = ("cuda" if torch.cuda.is_available() else "mps")
+    # 학습시 Mac GPU 사용을 위한 mps 사용가능 여부 확인
+    print(f"mps is available: {torch.backends.mps.is_available()}")
+
+    device = "cuda" if torch.cuda.is_available() else \
+        "mps" if torch.backends.mps.is_available() else "cpu"
     print(f"using device: {device}")
+    device = torch.device(device)
 
     ##############################################################################
     # Trainier를 이용한 학습
@@ -102,7 +109,8 @@ if __name__ == '__main__':
                       train_dataset=train_dataset,
                       eval_dataset=valid_dataset,
                       tokenizer=tokenizer,
-                      compute_metrics=compute_metrics)
+                      compute_metrics=compute_metrics,
+                      device=device)
 
     # 학습
     trainer.train()
