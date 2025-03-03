@@ -33,5 +33,5 @@ autotrain llm \
 --weight-decay 0.01 \
 --gradient-accumulation 8 \
 --peft \
---quantization None \
+--quantization float16 \
 --trainer sft
