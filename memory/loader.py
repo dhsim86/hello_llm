@@ -5,7 +5,8 @@ from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 from check_gpu_memory import print_gpu_utilization
 
 
-# 사용할 모델의 ID와 어떤 방식을 사용할지 입력받는 peft(PEFT 튜닝) 정의
+# 파라미터
+# - 사용할 모델의 ID와 어떤 방식을 사용할지 입력받는 peft(PEFT 튜닝)
 def load_model_and_tokenizer(model_id, peft=None):
     tokenizer = AutoTokenizer.from_pretrained(model_id)
     if peft is None:
