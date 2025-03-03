@@ -9,6 +9,13 @@ FINETUNED_MODEL='yi-ko-6b-text2sql'
 DATA_PATH='data/'
 TEXT_COLUMN='text'
 
+# --use-peft 파라미터 변경됨
+# https://github.com/huggingface/autotrain-advanced/issues/415#issuecomment-1863861915
+
+# macOS에서 불가능
+# --mixed-precision fp16 \
+# --quantization int4 \
+
 autotrain llm \
 --train \
 --model ${BASE_MODEL} \
@@ -25,7 +32,6 @@ autotrain llm \
 --lora-dropout 0.05 \
 --weight-decay 0.01 \
 --gradient-accumulation 8 \
---mixed-precision fp16 \
---use-peft \
---quantization int4 \
+--peft \
+--quantization None \
 --trainer sft
