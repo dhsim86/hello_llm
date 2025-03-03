@@ -4,6 +4,7 @@ from tqdm.auto import tqdm
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, AdamW
 import numpy as np
 
+
 def prepare_dataset():
     from datasets import load_dataset
 
@@ -67,6 +68,7 @@ def make_dataloader(dataset, batch_size, shuffle=True):
     # DataLoader 클래스를 사용해 데이터셋을 배치 데이터로 변환
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)
 
+
 ##############################################################################
 # 학습 수행
 def train_epoch(model, data_loader, optimizer):
@@ -90,7 +92,7 @@ def train_epoch(model, data_loader, optimizer):
 
         optimizer.step()  # 모델 업데이트 (역전파 결과를 바탕으로 모델 업데이트)
 
-        total_loss += loss.item() # 로스 집계
+        total_loss += loss.item()  # 로스 집계
 
     avg_loss = total_loss / len(data_loader)
     return avg_loss
@@ -112,34 +114,43 @@ def evaluate(model, data_loader):
 
             outputs = model(input_ids, attention_mask=attention_mask, labels=labels)
 
-            logits = outputs.logits # logits 속성
+            logits = outputs.logits  # logits 속성
 
             loss = outputs.loss
             total_loss += loss.item()
 
-            preds = torch.argmax(logits, dim=-1) # 가장 큰 값으로 예측한 카테고리 정보 확인
+            preds = torch.argmax(logits, dim=-1)  # 가장 큰 값으로 예측한 카테고리 정보 확인
 
             predictions.extend(preds.cpu().numpy())
             true_labels.extend(labels.cpu().numpy())
 
     avg_loss = total_loss / len(data_loader)
-    accuracy = np.mean(np.array(predictions) == np.array(true_labels)) # 실제 정답과 비교하여 정확도 계산
+    accuracy = np.mean(np.array(predictions) == np.array(true_labels))  # 실제 정답과 비교하여 정확도 계산
     return avg_loss, accuracy
 
 
 if __name__ == '__main__':
     train_dataset, test_dataset, valid_dataset = prepare_dataset()
     ##############################################################################
-    # 모델과 토크나이저 불러오기
-
-    # NVIDIA CUDA 사용 가능 여부 확인 후 디바이스 설정
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
     # 모델 및 토크나이저 로드
     model_id = "klue/roberta-base"
     model = AutoModelForSequenceClassification.from_pretrained(model_id,
                                                                num_labels=len(train_dataset.features['label'].names))
     tokenizer = AutoTokenizer.from_pretrained(model_id)
+
+    ##############################################################################
+    # 학습할 디바이스 설정
+
+    # 학습시 NVIDA 그래픽카드 사용을 위한 cuda 사용가능 여부 확인
+    print(f"cuda is available: {torch.cuda.is_available()}")
+
+    # 학습시 Mac GPU 사용을 위한 mps 사용가능 여부 확인
+    print(f"mps is available: {torch.backends.mps.is_available()}")
+
+    device = "cuda" if torch.cuda.is_available() else \
+        "mps" if torch.backends.mps.is_available() else "cpu"
+    print(f"using device: {device}")
+    device = torch.device(device)
 
     # 학습을 수행할 디바이스 설정, GPU로 모델 이동
     model.to(device)
@@ -174,10 +185,10 @@ if __name__ == '__main__':
     model.config.label2id = label2id
 
     # 모델 / 토크나이저를 허깅페이스로 업로드
-    #from huggingface_hub import login
+    # from huggingface_hub import login
 
-    #login(token='')
-    #repo_id = f"raveas/roberta-base-klue-ynat-classification"
+    # login(token='')
+    # repo_id = f"raveas/roberta-base-klue-ynat-classification"
 
-    #model.push_to_hub(repo_id)
-    #tokenizer.push_to_hub(repo_id)
+    # model.push_to_hub(repo_id)
+    # tokenizer.push_to_hub(repo_id)
