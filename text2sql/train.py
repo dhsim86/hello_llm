@@ -38,8 +38,8 @@ def train(model, tokenizer, train_dataset):
         num_train_epochs=1,  # 학습 에포크 수 (전체 데이터셋 1번만 학습)
         per_device_train_batch_size=8,  # 학습에 사용할 배치 크기
         per_device_eval_batch_size=8,  # evaluation에 사용할 배치 크기
-        evaluation_strategy='epoch',  # 평가를 수행할 빈도, 1-epoch 학습이 끝날 때 평가를 수행
-        learning_rate=5e-5,  # 학습률 지정
+        evaluation_strategy='no',  # 평가를 수행할 빈도, 1-epoch 학습이 끝날 때 평가를 수행
+        learning_rate=2e-4,  # 학습률 지정
         push_to_hub=False)  # 모델 학습 후 huggingface에 업로드 여부
 
     trainer = Trainer(model=model,
