@@ -48,7 +48,7 @@ def train(model, tokenizer, train_dataset):
                       tokenizer=tokenizer)
 
     trainer.train()
-    trainer.model.save_pretrained('yi-ko-6b-text2sql');
+    trainer.model.save_pretrained('yi-ko-6b-text2sql')
 
 
 if __name__ == '__main__':
@@ -57,7 +57,16 @@ if __name__ == '__main__':
 
     # 모델 로드
     model, tokenizer = load_model_and_tokenizer('beomi/Yi-Ko-6B')
-
     # 학습 데이터셋 준비
     train_dataset = prepare_dataset()
+
+
+    # train 컬럼에 토큰화를 수행
+    def tokenize_function(examples):
+        return tokenizer(examples['train'], padding='max_length', truncation=True)
+
+
+    # train / valid / test 데이터셋의 title 컬럼에 토큰화를 수행
+    train_dataset = train_dataset.map(tokenize_function, batched=True)
+
     train(model, tokenizer, train_dataset)
