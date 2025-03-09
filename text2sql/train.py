@@ -30,6 +30,33 @@ def prepare_dataset():
 
 def train(model, tokenizer, train_dataset):
     from transformers import Trainer
+    from trl import SFTTrainer
+    from peft import LoraConfig, get_peft_model
+
+    ##############################################################################
+    # LoRA 적용
+    # beomi/Yi-Ko-6B는 LLaMA 기반의 모델임
+    # https://huggingface.co/beomi/Yi-Ko-6B/blob/main/config.json
+    # 모델 출력해서 선형층(Linear) 확인 후 target_modules 설정
+    print(model)
+    lora_config = LoraConfig(
+        r=8,
+        lora_alpha=32,
+        target_modules=[
+            "q_proj",
+            "k_proj",
+            "v_proj",
+            "o_proj",
+            "gate_proj",
+            "up_proj",
+            "down_proj"],
+        lora_dropout=0.05,
+        bias="none",
+        task_type="CAUSAL_LM",
+    )
+    # lora_config를 적용해 파라미터를 재구성
+    model = get_peft_model(model, lora_config)
+    model.print_trainable_parameters()
 
     ##############################################################################
     # 학습인자와 평가 함수 정의
@@ -37,15 +64,19 @@ def train(model, tokenizer, train_dataset):
         output_dir='./results',  # 결과를 저장할 폴더
         num_train_epochs=1,  # 학습 에포크 수 (전체 데이터셋 1번만 학습)
         per_device_train_batch_size=8,  # 학습에 사용할 배치 크기
-        per_device_eval_batch_size=8,  # evaluation에 사용할 배치 크기
-        evaluation_strategy='no',  # 평가를 수행할 빈도, 1-epoch 학습이 끝날 때 평가를 수행
         learning_rate=2e-4,  # 학습률 지정
-        push_to_hub=False)  # 모델 학습 후 huggingface에 업로드 여부
+        fp16=True,
+        push_to_hub=False),  # 모델 학습 후 huggingface에 업로드 여부
 
-    trainer = Trainer(model=model,
-                      args=training_args,
-                      train_dataset=train_dataset,
-                      tokenizer=tokenizer)
+    ##############################################################################
+    # 학습 수행
+    trainer = SFTTrainer(
+        model=model,
+        train_dataset=train_dataset,
+        max_seq_length=512,
+        args=training_args,
+        peft_config=lora_config,
+    )
 
     trainer.train()
     trainer.model.save_pretrained('yi-ko-6b-text2sql')
