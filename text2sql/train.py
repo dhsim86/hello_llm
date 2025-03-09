@@ -30,7 +30,7 @@ def prepare_dataset():
 
 def train(model, tokenizer, train_dataset):
     from transformers import Trainer
-    from trl import SFTTrainer
+    from trl import SFTTrainer, SFTConfig
     from peft import LoraConfig, get_peft_model
 
     ##############################################################################
@@ -60,13 +60,15 @@ def train(model, tokenizer, train_dataset):
 
     ##############################################################################
     # 학습인자와 평가 함수 정의
-    training_args = TrainingArguments(
-        output_dir='./results',  # 결과를 저장할 폴더
-        num_train_epochs=1,  # 학습 에포크 수 (전체 데이터셋 1번만 학습)
-        per_device_train_batch_size=8,  # 학습에 사용할 배치 크기
-        learning_rate=2e-4,  # 학습률 지정
+    sft_config = SFTConfig(
+        num_train_epochs=1,
+        per_device_train_batch_size=8,
+        gradient_accumulation_steps=1,
+        learning_rate=2e-4,
         fp16=True,
-        push_to_hub=False),  # 모델 학습 후 huggingface에 업로드 여부
+        output_dir='./results',
+        push_to_hub=False
+    )
 
     ##############################################################################
     # 학습 수행
@@ -74,7 +76,7 @@ def train(model, tokenizer, train_dataset):
         model=model,
         train_dataset=train_dataset,
         max_seq_length=512,
-        args=training_args,
+        args=sft_config,
         peft_config=lora_config,
     )
 
