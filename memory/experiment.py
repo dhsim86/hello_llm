@@ -43,8 +43,7 @@ def gpu_memory_experiment(batch_size,
     finally:
         # 메모리 정리, 모델과 데이터셋을 제거하고 GPU 메모리 반환
         del model, dataset
-        gc.collect()
-        torch.cuda.empty_cache()
+        clean_gpu_memory()
         print_gpu_utilization()
 
 
