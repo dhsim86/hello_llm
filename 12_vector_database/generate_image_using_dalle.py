@@ -1,5 +1,3 @@
-from datasets import load_dataset
-
 from PIL import Image
 import requests
 
@@ -9,19 +7,6 @@ from openai import OpenAI
 openai_api_key = ''
 os.environ["OPENAI_API_KEY"] = openai_api_key
 client = OpenAI()
-
-
-# 데이터셋 다운로드
-def get_data_from_dataset():
-    dataset = load_dataset("poloclub/diffusiondb", "2m_first_1k", split='train')
-
-    example_index = 867
-
-    # 이미지 컬럼과 이미지를 만들 때 사용한 프롬프트 컬럼을 사용
-    original_image = dataset[example_index]['image']
-    original_prompt = dataset[example_index]['prompt']
-
-    return original_image, original_prompt
 
 
 # dall-e-3 모델을 통해 프롬프트 기반으로 이미지 생성
