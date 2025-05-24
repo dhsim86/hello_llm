@@ -22,8 +22,8 @@ d = xq.shape[1]
 nq = 1000
 xq = xq[:nq]
 
+start_memory = get_memory_usage_mb()
 for i in range(1, 10, 2):
-    start_memory = get_memory_usage_mb()
     start_indexing = time.time()
 
     index = faiss.IndexFlatL2(d)
