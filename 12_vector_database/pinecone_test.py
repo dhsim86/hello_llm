@@ -1,7 +1,7 @@
 def create_pinecone_index():
     from pinecone import Pinecone, ServerlessSpec
 
-    pinecone_api_key = "pcsk_732pgP_EbxXneqA9AwWQPJDigf7HQRR8CpNkR2SbutLtHW9grV5MSrqqVJmn2F3Hewv6dx"
+    pinecone_api_key = ""
     pc = Pinecone(api_key=pinecone_api_key)
 
     # 인덱스의 이름과 임베딩 벡터의 차원수를 지정하여 인덱스를 생성
@@ -14,7 +14,7 @@ def create_pinecone_index():
 def load_pinecone_index():
     from pinecone import Pinecone, ServerlessSpec
 
-    pinecone_api_key = "pcsk_732pgP_EbxXneqA9AwWQPJDigf7HQRR8CpNkR2SbutLtHW9grV5MSrqqVJmn2F3Hewv6dx"
+    pinecone_api_key = ""
     pc = Pinecone(api_key=pinecone_api_key)
 
     return pc.Index('llm-book')
