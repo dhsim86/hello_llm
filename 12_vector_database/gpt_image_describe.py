@@ -6,12 +6,9 @@ from io import BytesIO
 
 import os
 from openai import OpenAI
-from pinecone import Pinecone, ServerlessSpec
 
-pinecone_api_key = ""
 openai_api_key = ''
 
-pc = Pinecone(api_key=pinecone_api_key)
 os.environ["OPENAI_API_KEY"] = openai_api_key
 client = OpenAI()
 

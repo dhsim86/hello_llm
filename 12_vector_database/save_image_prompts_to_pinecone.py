@@ -14,7 +14,6 @@ client = OpenAI()
 
 def create_pinecone_index(index_name):
     # 인덱스 생성
-    index_name = "llm-multimodal"
     try:
         pc.create_index(
             name=index_name,
@@ -36,10 +35,7 @@ def create_pinecone_index(index_name):
 def convert_prompt_to_embedding(dataset):
     import torch
     from tqdm.auto import trange
-    from torch.utils.data import DataLoader
     from transformers import AutoTokenizer, CLIPTextModelWithProjection
-
-    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # openai/clip-vit-base-patch32 모델을 사용하여 텍스트 임베딩을 생성
     # 텍스트 모델과 토크나이저를 로드
